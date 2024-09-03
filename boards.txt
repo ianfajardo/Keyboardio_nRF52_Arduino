@@ -36,7 +36,7 @@ preonic.build.core=nRF5
 preonic.build.variant=keyboardio_preonic
 preonic.build.usb_manufacturer="Keyboardio"
 preonic.build.usb_product="Preonic"
-preonic.build.extra_flags=-DNRF52840_XXAA {build.flags.usb}
+preonic.build.extra_flags=-DNRF52840_XXAA -DCFG_TUD_HID=3 {build.flags.usb}
 preonic.build.ldscript=nrf52840_s140_v6.ld
 preonic.build.openocdscript=scripts/openocd/daplink_nrf52.cfg
 preonic.build.vid=0x3496

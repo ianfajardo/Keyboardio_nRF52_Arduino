@@ -33,10 +33,10 @@ preonic.build.mcu=cortex-m4
 preonic.build.f_cpu=64000000
 preonic.build.board=PREONIC
 preonic.build.core=nRF5
-preonic.build.variant=keyboardio_preonic
+preonic.build.variant=preonic
 preonic.build.usb_manufacturer="Keyboardio"
 preonic.build.usb_product="Preonic"
-preonic.build.extra_flags=-DNRF52840_XXAA -DCFG_TUD_HID=3 {build.flags.usb}
+preonic.build.extra_flags=-DNRF52840_XXAA -DCFG_TUD_HID=3 -DKALEIDOSCOPE_HARDWARE_H="Kaleidoscope-Hardware-Keyboardio-Preonic.h" {build.flags.usb}
 preonic.build.ldscript=nrf52840_s140_v6.ld
 preonic.build.openocdscript=scripts/openocd/daplink_nrf52.cfg
 preonic.build.vid=0x3496

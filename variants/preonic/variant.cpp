@@ -23,85 +23,53 @@
 #include "wiring_digital.h"
 #include "nrf.h"
 
+static constexpr uint32_t P1_BANK = 32;
+
 const uint32_t g_ADigitalPinMap[] =
 {
-  // D0 .. D13
-  25,  // D0  is P0.25 (UART TX)
-  24,  // D1  is P0.24 (UART RX 
-  10,  // D2  is P0.10 (NFC2)
-  47,  // D3  is P1.15 (LED1)
-  42,  // D4  is P1.10 (LED2)
-  40,  // D5  is P1.08
-   7,  // D6  is P0.07
-  34,  // D7  is P1.02 (Button)
-  16,  // D8  is P0.16 (NeoPixel)
-  26,  // D9  is P0.26
-  27,  // D10 is P0.27
-   6,  // D11 is P0.06
-   8,  // D12 is P0.08
-  41,  // D13 is P1.09
+  // D0 .. D30
+  
 
-  // D14 .. D21 (aka A0 .. A7)
-   4,  // D14 is P0.04 (A0)
-   5,  // D15 is P0.05 (A1)
-  30,  // D16 is P0.30 (A2)
-  28,  // D17 is P0.28 (A3)
-   2,  // D18 is P0.02 (A4)
-   3,  // D19 is P0.03 (A5)
-  29,  // D20 is P0.29 (A6, Battery)
-  31,  // D21 is P0.31 (A7, ARef)
-
-  // D22 .. D23 (aka I2C pins)
-  12,  // D22 is P0.12 (SDA)
-  11,  // D23 is P0.11 (SCL)
-
-  // D24 .. D26 (aka SPI pins)
-  15,  // D24 is P0.15 (SPI MISO)
-  13,  // D25 is P0.13 (SPI MOSI)
-  14,  // D26 is P0.14 (SPI SCK )
-
-  // QSPI pins (not exposed via any header / test point)
-  19,  // D27 is P0.19 (QSPI CLK)
-  20,  // D28 is P0.20 (QSPI CS)
-  17,  // D29 is P0.17 (QSPI Data 0)
-  22,  // D30 is P0.22 (QSPI Data 1)
-  23,  // D31 is P0.23 (QSPI Data 2)
-  21,  // D32 is P0.21 (QSPI Data 3)
-
-  // The remaining NFC pin
-   9,  // D33 is P0.09 (NFC1, exposed only via test point on bottom of board)
-
-  // Thus, there are 34 defined pins
-
-  // The remaining pins are not usable:
-  //
-  //
-  // The following pins were never listed as they were considered unusable
-  //  0,      // P0.00 is XL1   (attached to 32.768kHz crystal)
-  //  1,      // P0.01 is XL2   (attached to 32.768kHz crystal)
-  // 18,      // P0.18 is RESET (attached to switch)
-  // 32,      // P1.00 is SWO   (attached to debug header)
-  // 
-  // The remaining pins are not connected (per schematic)
-  // 33,      // P1.01 is not connected per schematic
-  // 35,      // P1.03 is not connected per schematic
-  // 36,      // P1.04 is not connected per schematic
-  // 37,      // P1.05 is not connected per schematic
-  // 38,      // P1.06 is not connected per schematic
-  // 39,      // P1.07 is not connected per schematic
-  // 43,      // P1.11 is not connected per schematic
-  // 44,      // P1.12 is not connected per schematic
-  // 45,      // P1.13 is not connected per schematic
-  // 46,      // P1.14 is not connected per schematic
+  P1_BANK + 13, // D0 is P1.13 is ROW1
+  11,           // D1 is P0.11 is ROW2
+  P1_BANK + 8,  // D2 is P1.08 is ROW3
+  27,           // D3 is P0.27 is ROW4
+  8,            // D4 is P0.08 is ROW5
+  6,            // D5 is P0.06 is ROW6
+  P1_BANK + 14, // D6 is P1.14 is COL1
+  P1_BANK + 12, // D7 is P1.12 is COL2
+  25,           // D8 is P0.25 is COL3
+  26,           // D9 is P0.26 is COL4
+  21,           // D10 is P0.21 is COL5
+  23,           // D11 is P0.23 is COL6
+  12,           // D12 is P0.12 is COL7
+  P1_BANK + 9,  // D13 is P1.09 is COL8
+  4,            // D14 is P0.04 is COL9
+  31,           // D15 is P0.31 is COL10
+  30,           // D16 is P0.30 is COL11
+  29,           // D17 is P0.29 is COL12
+  22,           // D18 is P0.22 is SPEAKER
+  24,           // D19 is P0.24 is RGB_DATA
+  P1_BANK + 5,  // D20 is P1.05 is RGB_EN
+  P1_BANK + 7,  // D21 is P1.07 is BATT_ALERT
+  P1_BANK + 2,  // D22 is P1.02 is CHG_STATUS
+  P1_BANK + 11, // D23 is P1.11 is ENC1_A
+  P1_BANK + 10, // D24 is P1.10 is ENC1_B
+  P1_BANK + 15, // D25 is P1.15 is ENC2_A
+  3,            // D26 is P0.03 is ENC2_B
+  2,            // D27 is P0.02 is ENC3_A
+  28,           // D28 is P0.28 is ENC3_B
+  5,            // D29 is P0.05 is I2C_SCL
+  7,            // D30 is P0.07 is I2C_SDA
 };
 
 void initVariant()
 {
   // LED1 & LED2
-  pinMode(PIN_LED1, OUTPUT);
-  ledOff(PIN_LED1);
+ // pinMode(PIN_LED1, OUTPUT);
+//  ledOff(PIN_LED1);
 
-  pinMode(PIN_LED2, OUTPUT);
-  ledOff(PIN_LED2);
+ // pinMode(PIN_LED2, OUTPUT);
+//  ledOff(PIN_LED2);
 }
 

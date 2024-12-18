@@ -65,11 +65,14 @@ const uint32_t g_ADigitalPinMap[] =
 
 void initVariant()
 {
-  // LED1 & LED2
- // pinMode(PIN_LED1, OUTPUT);
-//  ledOff(PIN_LED1);
+  // Enable DC/DC converter for better power efficiency
+  sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
 
- // pinMode(PIN_LED2, OUTPUT);
-//  ledOff(PIN_LED2);
+  // Disable debug interface if not actively debugging
+  NRF_CLOCK->TRACECONFIG = 0;
+
+  // Disable unused analog inputs
+  NRF_SAADC->ENABLE = 0;
+
 }
 

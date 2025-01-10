@@ -61,6 +61,7 @@ const uint32_t g_ADigitalPinMap[] =
   28,           // D28 is P0.28 is ENC3_B
   5,            // D29 is P0.05 is I2C_SCL
   7,            // D30 is P0.07 is I2C_SDA
+  19, 		// D31 is P0.19 is PGOOD
 };
 
 void initVariant()

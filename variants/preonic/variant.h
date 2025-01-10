@@ -37,9 +37,9 @@ extern "C"
 #endif // __cplusplus
 
 // Number of pins defined in PinDescription array
-#define PINS_COUNT           (31)
-#define NUM_DIGITAL_PINS     (31)
-#define NUM_ANALOG_INPUTS    (0) // A6 is used for battery, A7 is analog reference
+#define PINS_COUNT           (32)
+#define NUM_DIGITAL_PINS     (32)
+#define NUM_ANALOG_INPUTS    (0)
 #define NUM_ANALOG_OUTPUTS   (0)
 
 // LEDs

@@ -57,6 +57,23 @@ extern "C"
 #define LED_STATE_ON         1         // State when LED is litted
 
 
+#define PIN_LED_ENABLE 	20
+#define PIN_LED_DATA 	19
+#define PIN_BATT_ALERT	21
+#define PIN_CHARGE_STATUS 22
+#define PIN_POWER_GOOD	31
+
+#define PIN_ENC1_A 23
+#define PIN_ENC1_B 24
+
+#define PIN_ENC2_A 25
+#define PIN_ENC2_B 26
+
+#define PIN_ENC3_A 27
+#define PIN_ENC3_B 28
+
+
+
 /*
  * Analog pins
 #define PIN_A0               (14)

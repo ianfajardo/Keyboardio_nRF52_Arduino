@@ -56,6 +56,7 @@ extern "C"
 
 #define LED_STATE_ON         1         // State when LED is litted
 
+#define PIN_SPEAKER 18
 
 #define PIN_LED_ENABLE 	20
 #define PIN_LED_DATA 	19

@@ -717,17 +717,28 @@ bool BLECharacteristic::notify(uint16_t conn_hdl, const void* data, uint16_t len
   if ( notifyEnabled(conn_hdl) )
   {
     BLEConnection* conn = Bluefruit.Connection( conn_hdl );
-    VERIFY(conn);
+    VERIFY(conn); 
+    
 
     uint16_t const max_payload = conn->getMtu() - 3;
     const uint8_t* u8data = (const uint8_t*) data;
 
+  // The connection interval (in units of 1.25 ms) determines the amount of time
+  // to wait before retrying to resend a notification
+  uint8_t const retry_delay = conn->getConnectionInterval() / 1.25;
+
+
     while ( remaining )
     {
-      // Failed if there is no free buffer
-      if ( !conn->getHvnPacket() ) return false;
+  
 
-      uint16_t packet_len = min16(max_payload, remaining);
+      // Get HVN packet - if this fails, BLEConnection will log it
+      //if (!conn->getHvnPacket()) {
+       // Serial.println(F("Failed to get HVN packet"));
+       // return false;
+     // }
+
+       uint16_t packet_len = min16(max_payload, remaining);
 
       ble_gatts_hvx_params_t hvx_params =
       {
@@ -739,23 +750,39 @@ bool BLECharacteristic::notify(uint16_t conn_hdl, const void* data, uint16_t len
       };
 
       LOG_LV2("CHR", "Notify %d bytes", packet_len);
-      uint32_t status = sd_ble_gatts_hvx(conn_hdl, &hvx_params);
-      if(NRF_SUCCESS != status)
-      {
-        conn->releaseHvnPacket();
+      uint32_t status = NRF_ERROR_RESOURCES; 
+      // If we're out of hvn slots, let's keep trying
+      while (NRF_ERROR_RESOURCES == status) {
+        status = sd_ble_gatts_hvx(conn_hdl, &hvx_params);
+        if (NRF_ERROR_RESOURCES == status)
+        { 
+          // Delay for just over one connection interval for our current connection
+
+          vTaskDelay(15); //pdMS_TO_TICKS(retry_delay));
+        }
       }
-      VERIFY_STATUS(status, false );
+      if (NRF_SUCCESS != status)
+      {
+        // We had some other kind of error and need to bail out so we don't get stuck in an infinite loop
+        return false;
+      }
+
+      // Log successful chunk notification
 
       remaining -= packet_len;
       u8data    += packet_len;
-    }
+
+
+    
+
+    // Log completion of notification process
+  }
   }
   else
   {
     write(data, remaining);
     return false;
   }
-
   return true;
 }
 

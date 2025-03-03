@@ -49,6 +49,45 @@
 #define CFG_SOC_TASK_STACKSIZE    (200)
 #endif
 
+// Error queue definitions
+#define ERROR_QUEUE_SIZE 25
+#define ERROR_MSG_MAX_LEN 128
+
+struct ErrorMessage {
+  uint32_t timestamp;
+  uint32_t error_id;
+  uint32_t program_counter;
+  uint32_t info;
+  char message[ERROR_MSG_MAX_LEN];
+};
+
+// Static queue for error messages
+static StaticQueue_t error_queue_buffer;
+static ErrorMessage error_queue_storage[ERROR_QUEUE_SIZE];
+static QueueHandle_t error_queue = nullptr;
+
+// Function to process queued error messages
+void process_error_messages(void) {
+  if (!error_queue) return;
+  
+  ErrorMessage err;
+  while (xQueueReceive(error_queue, &err, 0) == pdTRUE) {
+    LOG_LV1("Error", "[%lu] ID=0x%lX PC=0x%lX Info=0x%lX: %s", 
+            err.timestamp, err.error_id, err.program_counter, err.info, err.message);
+    
+    if (err.error_id == NRF_FAULT_ID_SD_ASSERT && err.info != 0) {
+      typedef struct {
+        uint16_t line_num;
+        uint8_t const * p_file_name;
+      } assert_info_t;
+      
+      assert_info_t* assert_info = (assert_info_t*) err.info;
+      LOG_LV1("SD Assert", "at %s : %d", 
+              assert_info->p_file_name, assert_info->line_num);
+    }
+  }
+}
+
 #ifdef USB_PRODUCT
   #define CFG_DEFAULT_NAME    USB_PRODUCT
 #else
@@ -117,25 +156,33 @@ static void bluefruit_blinky_cb( TimerHandle_t xTimer )
 
 static void nrf_error_cb(uint32_t id, uint32_t pc, uint32_t info)
 {
-#if CFG_DEBUG
-  PRINT_INT(id);
-  PRINT_HEX(pc);
-  PRINT_HEX(info);
-
-  if ( id == NRF_FAULT_ID_SD_ASSERT && info != 0)
-  {
-    typedef struct
-    {
-        uint16_t        line_num;    /**< The line number where the error occurred. */
-        uint8_t const * p_file_name; /**< The file in which the error occurred. */
-    } assert_info_t;
-
-    assert_info_t* assert_info = (assert_info_t*) info;
-
-    LOG_LV1("SD Err", "assert at %s : %d", assert_info->p_file_name, assert_info->line_num);
+  if (!error_queue) {
+    tone(PIN_SPEAKER, 1000, 100);
+    // If queue isn't initialized yet, we have no choice but to skip logging
+    return;
   }
 
-  while(1) yield();
+  ErrorMessage err;
+  err.timestamp = millis();
+  err.error_id = id;
+  err.program_counter = pc;
+  err.info = info;
+  
+  // Format basic error info
+  snprintf(err.message, ERROR_MSG_MAX_LEN, "SoftDevice Error");
+  
+  // Queue from ISR since this is called from interrupt context
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  xQueueSendFromISR(error_queue, &err, &xHigherPriorityTaskWoken);
+  
+  // If a higher priority task was woken, request context switch
+  portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+
+#if CFG_DEBUG
+  // In debug builds, still block in case of assert
+  if (id == NRF_FAULT_ID_SD_ASSERT) {
+    while(1) yield();
+  }
 #endif
 }
 
@@ -288,6 +335,12 @@ bool AdafruitBluefruit::begin(uint8_t prph_count, uint8_t central_count)
 #ifdef USE_TINYUSB
   usb_softdevice_pre_enable();
 #endif
+
+  // Initialize error message queue
+  error_queue = xQueueCreateStatic(ERROR_QUEUE_SIZE,
+                                 sizeof(ErrorMessage),
+                                 (uint8_t*)error_queue_storage,
+                                 &error_queue_buffer);
 
   // Configure Clock
 #if defined( USE_LFXO )
@@ -486,6 +539,9 @@ bool AdafruitBluefruit::begin(uint8_t prph_count, uint8_t central_count)
 
   // Initialize bonding
   bond_init();
+
+  // Initialize BLE Event Logger
+  bleEventLogger.begin();
 
   return true;
 }

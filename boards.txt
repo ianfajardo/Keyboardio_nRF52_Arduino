@@ -40,7 +40,7 @@ preonic.build.extra_flags=-DNRF52840_XXAA -DCFG_TUD_HID=3 -DKALEIDOSCOPE_HARDWAR
 preonic.build.ldscript=nrf52840_s140_v6.ld
 preonic.build.openocdscript=scripts/openocd/daplink_nrf52.cfg
 preonic.build.vid=0x3496
-preonic.build.pid=0x00A0
+preonic.build.pid=0x00A1
 preonic.build.uf2_family=0xADA52840
 
 # Menu: SoftDevice

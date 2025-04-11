@@ -54,6 +54,9 @@ BLEConnection::BLEConnection(uint16_t conn_hdl, ble_gap_evt_connected_t const* e
   _peer_addr = evt_connected->peer_addr;
   _role = evt_connected->role;
 
+  // Store queue sizes for introspection
+  _hvn_qsize = hvn_qsize;
+  
   _hvn_sem   = xSemaphoreCreateCounting(hvn_qsize, hvn_qsize);
   _wrcmd_sem = xSemaphoreCreateCounting(wrcmd_qsize, wrcmd_qsize);
 
@@ -231,17 +234,70 @@ void BLEConnection::stopRssi(void)
 
 bool BLEConnection::getHvnPacket (void)
 {
-  return xSemaphoreTake(_hvn_sem, ms2tick(BLE_GENERIC_TIMEOUT));
+  // Create event for attempt to get packet
+  BLEEvent evt;
+  evt.timestamp = millis();
+  evt.type = BLEEvent::HVN_PACKET_TAKE;
+  evt.conn_handle = _conn_hdl;
+  evt.hvn.hvn_queue_size = _hvn_qsize;
+  evt.hvn.available_packets = getHvnQueueAvailable();
+  evt.hvn.packets_in_use = _hvn_qsize - evt.hvn.available_packets;
+
+  bool success = xSemaphoreTake(_hvn_sem, ms2tick(BLE_GENERIC_TIMEOUT));
+  LOG_LV2("HVN", "Take HVN packet: %d", success);
+  
+  // Update success/failure status and push event
+  evt.success = success;
+  
+  // Push event to logger
+  bleEventLogger.pushEvent(evt);
+  
+  return success;
 }
 
 bool BLEConnection::releaseHvnPacket(void)
 {
-  return xSemaphoreGive(_hvn_sem);
+  // Create event for packet release
+  BLEEvent evt;
+  evt.timestamp = millis();
+  evt.type = BLEEvent::HVN_PACKET_RELEASE;
+  evt.conn_handle = _conn_hdl;
+  evt.hvn.hvn_queue_size = _hvn_qsize;
+  evt.hvn.available_packets = getHvnQueueAvailable();
+  evt.hvn.packets_in_use = _hvn_qsize - evt.hvn.available_packets;
+
+  // Give the semaphore and check result
+  bool success = (pdTRUE == xSemaphoreGive(_hvn_sem));
+  
+  // Update event with final state and push
+  evt.success = success;
+  bleEventLogger.pushEvent(evt);
+
+  return success;
 }
 
 bool BLEConnection::getWriteCmdPacket (void)
 {
   return xSemaphoreTake(_wrcmd_sem, ms2tick(BLE_GENERIC_TIMEOUT));
+}
+
+// Returns the total size of the HVN queue (maximum number of packets)
+uint8_t BLEConnection::getHvnQueueSize(void)
+{
+  return _hvn_qsize;
+}
+
+// Returns the number of available (free) HVN packets
+uint8_t BLEConnection::getHvnQueueAvailable(void)
+{
+  UBaseType_t available = uxSemaphoreGetCount(_hvn_sem);
+  return (uint8_t)available;
+}
+
+// Returns true if the HVN queue is empty (all packets available)
+bool BLEConnection::isHvnQueueEmpty(void)
+{
+  return getHvnQueueAvailable() == _hvn_qsize;
 }
 
 bool BLEConnection::saveCccd(void)
@@ -416,7 +472,24 @@ void BLEConnection::_eventHandler(ble_evt_t* evt)
     //
     //--------------------------------------------------------------------+
     case BLE_GATTS_EVT_HVN_TX_COMPLETE:
-      for(uint8_t i=0; i<evt->evt.gatts_evt.params.hvn_tx_complete.count; i++) xSemaphoreGive(_hvn_sem);
+    {
+      uint8_t const count = evt->evt.gatts_evt.params.hvn_tx_complete.count;
+      
+      // Log HVN TX complete event
+      BLEEvent log_evt;
+      log_evt.timestamp = millis();
+      log_evt.type = BLEEvent::HVN_TX_COMPLETE;
+      log_evt.conn_handle = _conn_hdl;
+      log_evt.hvn.hvn_queue_size = _hvn_qsize;
+      log_evt.hvn.available_packets = getHvnQueueAvailable();
+      log_evt.hvn.packets_in_use = _hvn_qsize - log_evt.hvn.available_packets;
+      log_evt.hvn.count = count;
+      
+      // Push event to logger
+      bleEventLogger.pushEvent(log_evt);
+      
+      for(uint8_t i=0; i<count; i++) releaseHvnPacket();
+    }
     break;
 
     case BLE_GATTC_EVT_WRITE_CMD_TX_COMPLETE:

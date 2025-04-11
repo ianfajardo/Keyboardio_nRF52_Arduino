@@ -255,7 +255,9 @@ bool BLEHidGeneric::inputReport(uint16_t conn_hdl, uint8_t reportID, void const*
 {
   // index is ID-1
   uint8_t const idx =  ( reportID ? (reportID-1) : 0 );
-  return _chr_inputs[idx].notify(conn_hdl, (uint8_t const*) data, len);
+
+  bool success = _chr_inputs[idx].notify(conn_hdl, (uint8_t const*) data, len);
+  return success;
 }
 
 bool BLEHidGeneric::bootKeyboardReport(uint16_t conn_hdl, void const* data, int len)

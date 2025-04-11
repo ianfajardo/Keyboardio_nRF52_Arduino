@@ -34,12 +34,31 @@
 */
 /**************************************************************************/
 
-#ifndef BLECONNECTION_H_
-#define BLECONNECTION_H_
+#pragma once
 
 #include <Arduino.h>
 #include "bluefruit_common.h"
 #include "utility/bonding.h"
+#include <bluefruit.h>
+#include "BLEEventLogger.h"
+
+// Ring buffer for HVN events
+struct HVNEvent {
+  enum Type {
+    HVN_PACKET_TAKE,
+    HVN_PACKET_RELEASE,
+    HVN_TX_COMPLETE
+  };
+  
+  uint32_t timestamp;
+  Type type;
+  uint16_t conn_handle;
+  uint8_t hvn_queue_size;
+  uint8_t available_packets;
+  uint8_t packets_in_use;
+  uint8_t count;  // For TX_COMPLETE events
+  bool success;   // For TAKE and RELEASE events
+};
 
 class BLEConnection
 {
@@ -66,6 +85,9 @@ class BLEConnection
 
     SemaphoreHandle_t _hvn_sem;
     SemaphoreHandle_t _wrcmd_sem;
+    
+    // Store queue sizes for introspection
+    uint8_t _hvn_qsize;
 
     // On-demand semaphore/data that are created on the fly
     SemaphoreHandle_t _hvc_sem;
@@ -110,6 +132,11 @@ class BLEConnection
     bool releaseHvnPacket(void);
     bool getWriteCmdPacket(void);
     bool waitForIndicateConfirm(void);
+    
+    // HVN queue introspection methods
+    uint8_t getHvnQueueSize(void);
+    uint8_t getHvnQueueAvailable(void);
+    bool isHvnQueueEmpty(void);
 
     bool saveBondKey(bond_keys_t const* ltkey);
     bool loadBondKey(bond_keys_t* ltkey);
@@ -124,6 +151,3 @@ class BLEConnection
      *------------------------------------------------------------------*/
     void _eventHandler(ble_evt_t* evt);
 };
-
-
-#endif /* BLECONNECTION_H_ */

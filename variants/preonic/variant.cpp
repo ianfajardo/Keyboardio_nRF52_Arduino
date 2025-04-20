@@ -22,6 +22,9 @@
 #include "wiring_constants.h"
 #include "wiring_digital.h"
 #include "nrf.h"
+#include "nrf_gpio.h"
+#include "nrf_power.h"
+
 
 static constexpr uint32_t P1_BANK = 32;
 
@@ -64,16 +67,49 @@ const uint32_t g_ADigitalPinMap[] =
   19, 		// D31 is P0.19 is PGOOD
 };
 
+
+void disableUnusedPin(uint8_t pin) {
+NRF_GPIO->PIN_CNF[pin] =  (GPIO_PIN_CNF_DIR_Input      << GPIO_PIN_CNF_DIR_Pos) |
+                        (GPIO_PIN_CNF_INPUT_Disconnect << GPIO_PIN_CNF_INPUT_Pos) |
+                        (GPIO_PIN_CNF_PULL_Disabled  << GPIO_PIN_CNF_PULL_Pos);
+}
+
+
 void initVariant()
 {
   // Enable DC/DC converter for better power efficiency
   sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
+
+ 
+// Don't touch pins P0.0, P0.1 as they're not routed by the HolyIOT 18010
+//  nrf_gpio_cfg_input(0, NRF_GPIO_PIN_PULLDOWN);   // P0.00
+//  nrf_gpio_cfg_input(1, NRF_GPIO_PIN_PULLDOWN);   // P0.01
+
+// Don't touch pin P0.18. That's RESET
+  // nrf_gpio_cfg_input(18, NRF_GPIO_PIN_PULLDOWN);  // P0.18
+
+ 
+  // Configure unused P0.xx pins
+  disableUnusedPin(9);   // P0.09
+  disableUnusedPin(10);  // P0.10
+  disableUnusedPin(13);  // P0.13
+  disableUnusedPin(14);  // P0.14
+  disableUnusedPin(15);  // P0.15
+  disableUnusedPin(16);  // P0.16
+  disableUnusedPin(17);  // P0.17
+  disableUnusedPin(20);  // P0.20
+
+  // Configure unused P1.xx pins
+  disableUnusedPin(P1_BANK + 0);  // P1.00
+  disableUnusedPin(P1_BANK + 1);  // P1.01
+  disableUnusedPin(P1_BANK + 3);  // P1.03
+  disableUnusedPin(P1_BANK + 4);  // P1.04
+  disableUnusedPin(P1_BANK + 6);  // P1.06
 
   // Disable debug interface if not actively debugging
   NRF_CLOCK->TRACECONFIG = 0;
 
   // Disable unused analog inputs
   NRF_SAADC->ENABLE = 0;
-
 }
 

@@ -113,7 +113,8 @@ void enterOTADfu(void)
 
 void waitForEvent(void)
 {
-#if 0
+// NRF52840 erratum: 3.7 [87] CPU: Unexpected wake from System ON Idle when using FPU
+#if (__FPU_USED == 1)
   // Set bit 7 and bits 4..0 in the mask to one (0x ...00 1001 1111)
   enum { FPU_EXCEPTION_MASK = 0x0000009F };
 

@@ -67,12 +67,16 @@ const uint32_t g_ADigitalPinMap[] =
   19, 		// D31 is P0.19 is PGOOD
 };
 
-
-void disableUnusedPin(uint8_t pin) {
-NRF_GPIO->PIN_CNF[pin] =  (GPIO_PIN_CNF_DIR_Input      << GPIO_PIN_CNF_DIR_Pos) |
-                        (GPIO_PIN_CNF_INPUT_Disconnect << GPIO_PIN_CNF_INPUT_Pos) |
-                        (GPIO_PIN_CNF_PULL_Disabled  << GPIO_PIN_CNF_PULL_Pos);
+void disableUnusedPin(NRF_GPIO_Type *port, uint8_t pin) {
+    // Configure for lowest power consumption
+    port->PIN_CNF[pin] = ((uint32_t)GPIO_PIN_CNF_DIR_Input        << GPIO_PIN_CNF_DIR_Pos)
+                       | ((uint32_t)GPIO_PIN_CNF_INPUT_Disconnect << GPIO_PIN_CNF_INPUT_Pos)
+                       | ((uint32_t)GPIO_PIN_CNF_PULL_Disabled    << GPIO_PIN_CNF_PULL_Pos)
+                       | ((uint32_t)GPIO_PIN_CNF_DRIVE_S0S1       << GPIO_PIN_CNF_DRIVE_Pos)
+                       | ((uint32_t)GPIO_PIN_CNF_SENSE_Disabled   << GPIO_PIN_CNF_SENSE_Pos);
 }
+
+
 
 
 void initVariant()
@@ -89,23 +93,22 @@ void initVariant()
   // nrf_gpio_cfg_input(18, NRF_GPIO_PIN_PULLDOWN);  // P0.18
 
  
-  // Configure unused P0.xx pins
-  disableUnusedPin(9);   // P0.09
-  disableUnusedPin(10);  // P0.10
-  disableUnusedPin(13);  // P0.13
-  disableUnusedPin(14);  // P0.14
-  disableUnusedPin(15);  // P0.15
-  disableUnusedPin(16);  // P0.16
-  disableUnusedPin(17);  // P0.17
-  disableUnusedPin(20);  // P0.20
-
-  // Configure unused P1.xx pins
-  disableUnusedPin(P1_BANK + 0);  // P1.00
-  disableUnusedPin(P1_BANK + 1);  // P1.01
-  disableUnusedPin(P1_BANK + 3);  // P1.03
-  disableUnusedPin(P1_BANK + 4);  // P1.04
-  disableUnusedPin(P1_BANK + 6);  // P1.06
-
+     // Configure unused P0.xx pins
+    disableUnusedPin(NRF_P0, 9);   // P0.09
+    disableUnusedPin(NRF_P0, 10);  // P0.10
+    disableUnusedPin(NRF_P0, 13);  // P0.13
+    disableUnusedPin(NRF_P0, 14);  // P0.14
+    disableUnusedPin(NRF_P0, 15);  // P0.15
+    disableUnusedPin(NRF_P0, 16);  // P0.16
+    disableUnusedPin(NRF_P0, 17);  // P0.17
+    disableUnusedPin(NRF_P0, 20);  // P0.20
+    
+    // Configure unused P1.xx pins
+    disableUnusedPin(NRF_P1, 0);  // P1.00
+    disableUnusedPin(NRF_P1, 1);  // P1.01
+    disableUnusedPin(NRF_P1, 3);  // P1.03
+    disableUnusedPin(NRF_P1, 4);  // P1.04
+    disableUnusedPin(NRF_P1, 6);  // P1.06
   // Disable debug interface if not actively debugging
   NRF_CLOCK->TRACECONFIG = 0;
 

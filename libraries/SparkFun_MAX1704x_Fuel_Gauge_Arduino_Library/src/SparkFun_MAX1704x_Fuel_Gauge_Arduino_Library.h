@@ -156,15 +156,15 @@ public:
   uint8_t quickStart();
 
   // getVoltage() - Get the MAX17043's voltage reading.
-  // Output: floating point value between 0-5V in 1.25mV increments.
-  float getVoltage();
+  // Output: integer value representing millivolts (mV).
+  uint16_t getVoltage();
 
   // getSOC() - Get the MAX17043's state-of-charge (SOC) reading, as calculated
   // by the IC's "ModelGauge" algorithm.
   // The first update is available approximately 1s after POR of the IC.
-  // Output: floating point value between 0-100, representing a percentage of
+  // Output: integer value between 0-100, representing a percentage of
   // full charge.
-  float getSOC();
+  uint8_t getSOC();
 
   // getVersion() - Get the MAX17043's production version number.
   // Output: 3 on success
@@ -244,12 +244,12 @@ public:
   // a battery is detached and re-connected. 40mV per bit. Default is 3.0V.
   // For captive batteries, set to 2.5V. For
   // removable batteries, set to at least 300mV below the
-  // application’s empty voltage, according to the desired
+  // application's empty voltage, according to the desired
   // reset threshold for your application.
   // Input: [threshold] - Should be a value between 0-127.
   // Output: 0 on success, positive integer on fail.
   uint8_t setResetVoltage(uint8_t threshold = (0x96 >> 1));
-  uint8_t setResetVoltage(float threshold = 3.0); // Helper function: set threshold in Volts
+  uint8_t setResetVoltage(uint16_t threshold_mv = 3000); // Helper function: threshold in millivolts
 
   // getResetVoltage() - (MAX17048/49) Get the 7-bit VRESET value
   // Output: 7-bit value read from the VRESET/ID register's MSB.
@@ -267,9 +267,9 @@ public:
   uint8_t disableComparator(void);
 
   // getChangeRate() - (MAX17048/49) Get rate of change per hour in %
-  // Output: (signed) Float (that is the 0.208% * CRATE register value)
-  // A positive rate is charging, negative is discharge.
-  float getChangeRate();
+  // Output: Raw signed register value. Each bit represents 0.208%/hr.
+  // A positive value indicates charging, negative indicates discharging.
+  int16_t getChangeRate();
 
   // getStatus() - (MAX17048/49) Get the 7 bits of status register
   // Output: 7-bits indicating various alerts
@@ -327,13 +327,13 @@ public:
   // Output: 0 on success, positive integer on fail.
   // Note: this sets the threshold voltage _per cell_ (MAX17049 monitors two cells)
   uint8_t setVALRTMax(uint8_t threshold = 0xFF); // LSb = 20mV
-  uint8_t setVALRTMax(float threshold = 5.1); // threshold is defined in Volts
+  uint8_t setVALRTMax(uint16_t threshold_mv = 5100); // threshold in millivolts
 
   // Set the MAX17048/49 VALRT Minimum threshold
   // Output: 0 on success, positive integer on fail.
   // Note: this sets the threshold voltage _per cell_ (MAX17049 monitors two cells)
   uint8_t setVALRTMin(uint8_t threshold = 0x00); // LSb = 20mV
-  uint8_t setVALRTMin(float threshold = 0.0); // threshold is defined in Volts
+  uint8_t setVALRTMin(uint16_t threshold_mv = 0); // threshold in millivolts
 
   // Read and return the MAX17048/49 Hibernate Status flag
   bool isHibernating();
@@ -345,7 +345,7 @@ public:
   // Set the MAX17048/49 HIBRT Active Threshold
   // Output: 0 on success, positive integer on fail.
   uint8_t setHIBRTActThr(uint8_t threshold); // LSb = 1.25mV
-  uint8_t setHIBRTActThr(float threshold); // Helper function: set threshold in Volts
+  uint8_t setHIBRTActThr(uint16_t threshold_uv); // threshold in microvolts
 
   // Read and return the MAX17048/49 HIBRT Hibernate Threshold
   // LSb = 0.208%/hr
@@ -354,7 +354,7 @@ public:
   // Set the MAX17048/49 HIBRT Hibernate Threshold
   // Output: 0 on success, positive integer on fail.
   uint8_t setHIBRTHibThr(uint8_t threshold); // LSb = 0.208%/hr
-  uint8_t setHIBRTHibThr(float threshold); // Helper function: set threshold in percent
+  uint8_t setHIBRTHibThr(uint16_t threshold_scaled); // threshold in hundredths of %/hr (1/100th percent per hour)
 
   // Place the MAX17048/49 into hibernate
   // Sets the HIBRT register to 0xFFFF
@@ -397,7 +397,6 @@ private:
   uint8_t clearStatusRegBits(uint16_t mask);
 
   int _device = MAX1704X_MAX17043; // Default to MAX17043
-  float _full_scale = 5.12; // Default: full-scale for the MAX17043
 };
 
 #endif

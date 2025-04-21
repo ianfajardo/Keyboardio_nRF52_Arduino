@@ -31,23 +31,6 @@ void SFE_MAX1704X::setDevice(sfe_max1704x_devices_e device)
 {
   // Record the device type
   _device = device;
-
-  // Define the full-scale voltage for VCELL based on the device
-  switch (device)
-  {
-    case MAX1704X_MAX17044:
-      _full_scale = 10.24; // MAX17044 VCELL is 12-bit, 2.50mV per LSB
-      break;
-    case MAX1704X_MAX17048:
-      _full_scale = 5.12; // MAX17048 VCELL is 16-bit, 78.125uV/cell per LSB
-      break;
-    case MAX1704X_MAX17049:
-      _full_scale = 10.24; // MAX17049 VCELL is 16-bit, 78.125uV/cell per LSB (i.e. 156.25uV per LSB)
-      break;
-    default: // Default is the MAX17043
-      _full_scale = 5.12; // MAX17043 VCELL is 12-bit, 1.25mV per LSB
-      break;
-  }
 }
 
 bool SFE_MAX1704X::begin(TwoWire &wirePort)
@@ -153,9 +136,9 @@ void SFE_MAX1704X::disableDebugging(void)
 uint8_t SFE_MAX1704X::quickStart()
 {
   // A quick-start allows the MAX17043 to restart fuel-gauge calculations in the
-  // same manner as initial power-up of the IC. If an application’s power-up
+  // same manner as initial power-up of the IC. If an application's power-up
   // sequence is exceedingly noisy such that excess error is introduced into the
-  // IC’s “first guess” of SOC, the host can issue a quick-start to reduce the
+  // IC's "first guess" of SOC, the host can issue a quick-start to reduce the
   // error. A quick-start is initiated by a rising edge on the QSTRT pin, or
   // through software by writing 4000h to MODE register.
 
@@ -164,10 +147,9 @@ uint8_t SFE_MAX1704X::quickStart()
   return write16(MAX17043_MODE_QUICKSTART, MAX17043_MODE);
 }
 
-float SFE_MAX1704X::getVoltage()
+uint16_t SFE_MAX1704X::getVoltage()
 {
-  uint16_t vCell;
-  vCell = read16(MAX17043_VCELL);
+  uint16_t vCell = read16(MAX17043_VCELL);
 
   if (_device <= MAX1704X_MAX17044)
   {
@@ -176,9 +158,16 @@ float SFE_MAX1704X::getVoltage()
     // 2.5mV on the MAX17044
     vCell = (vCell) >> 4; // Align the 12 bits
 
-    float divider = 4096.0 / _full_scale;
-
-    return (((float)vCell) / divider);
+    if (_device == MAX1704X_MAX17044)
+    {
+      // 2.5mV per bit = multiply by 2.5 = multiply by 25 and divide by 10
+      return ((uint32_t)vCell * 25) / 10;
+    }
+    else // MAX17043
+    {
+      // 1.25mV per bit = multiply by 1.25 = multiply by 5 and divide by 4
+      return ((uint32_t)vCell * 5) / 4;
+    }
   }
   else
   {
@@ -186,20 +175,33 @@ float SFE_MAX1704X::getVoltage()
     // i.e. 78.125uV per LSB on the MAX17048
     // i.e. 156.25uV per LSB on the MAX17049
 
-    float divider = 65536.0 / _full_scale;
-
-    return (((float)vCell) / divider);
+    if (_device == MAX1704X_MAX17049)
+    {
+      // 156.25uV per LSB = 0.15625mV
+      // Multiply by 156250 and divide by 1000000 to get mV
+      return ((uint32_t)vCell * 15625) / 100000;
+    }
+    else // MAX17048
+    {
+      // 78.125uV per LSB = 0.078125mV
+      // Multiply by 78125 and divide by 1000000 to get mV
+      return ((uint32_t)vCell * 78125) / 1000000;
+    }
   }
 }
 
-float SFE_MAX1704X::getSOC()
+uint8_t SFE_MAX1704X::getSOC()
 {
-  uint16_t soc;
-  float percent;
-  soc = read16(MAX17043_SOC);
-  percent = (float)((soc & 0xFF00) >> 8);
-  percent += ((float)(soc & 0x00FF)) / 256.0;
-
+  uint16_t soc = read16(MAX17043_SOC);
+  
+  // The MSB is the integer part
+  uint8_t percent = (soc >> 8) & 0xFF;
+  
+  // The LSB is the fractional part, we need it as a percentage
+  // LSB = 1/256%, so we calculate (LSB * 100) / 256
+  // Add 128 for proper rounding
+  uint8_t fraction = ((soc & 0xFF) * 100 + 128) >> 8;
+  
   return percent;
 }
 
@@ -247,10 +249,12 @@ uint8_t SFE_MAX1704X::setResetVoltage(uint8_t threshold)
 
   return write16(vreset, MAX17048_VRESET_ID);
 }
-uint8_t SFE_MAX1704X::setResetVoltage(float threshold)
+uint8_t SFE_MAX1704X::setResetVoltage(uint16_t threshold_mv)
 {
   // 7 bits. LSb = 40mV
-  uint8_t thresh = (uint8_t)(constrain(threshold, 0.0, 5.08) / 0.04);
+  // threshold_mv is in millivolts
+  uint8_t thresh = (uint8_t)((threshold_mv + 20) / 40); // Add 20 for rounding
+  thresh = (thresh > 127) ? 127 : thresh; // Constrain to 7 bits
   return setResetVoltage(thresh);
 }
 
@@ -307,7 +311,7 @@ uint8_t SFE_MAX1704X::disableComparator(void)
   return write16(vresetReg, MAX17048_VRESET_ID);
 }
 
-float SFE_MAX1704X::getChangeRate(void)
+int16_t SFE_MAX1704X::getChangeRate(void)
 {
   if (_device <= MAX1704X_MAX17044)
   {
@@ -317,12 +321,13 @@ float SFE_MAX1704X::getChangeRate(void)
       _debugPort->println(F("getChangeRate: not supported on this device"));
     }
     #endif // if MAX1704X_ENABLE_DEBUGLOG
-    return (0.0);
+    return (0);
   }
 
   int16_t changeRate = read16(MAX17048_CRATE);
-  float changerate_f = changeRate * 0.208;
-  return (changerate_f);
+  // CRATE LSB is 0.208%/hr
+  // We return the raw value directly
+  return changeRate;
 }
 
 uint8_t SFE_MAX1704X::getStatus(void)
@@ -564,7 +569,7 @@ uint8_t SFE_MAX1704X::setThreshold(uint8_t percent)
   // It has an LSb weight of 1%, and can be programmed from 1% to 32%.
   // The value is (32 - ATHD)%, e.g.: 00000=32%, 00001=31%, 11111=1%.
   // Let's convert our percent to that first:
-  percent = (uint8_t)constrain((float)percent, 0.0, 32.0);
+  percent = (percent < 1) ? 1 : (percent > 32) ? 32 : percent;
   percent = 32 - percent;
 
   // Read config reg, so we don't modify any other values:
@@ -701,9 +706,12 @@ uint8_t SFE_MAX1704X::setVALRTMax(uint8_t threshold)
   valrt |= (uint16_t)threshold;
   return write16(valrt, MAX17048_CVALRT);
 }
-uint8_t SFE_MAX1704X::setVALRTMax(float threshold)
+uint8_t SFE_MAX1704X::setVALRTMax(uint16_t threshold_mv)
 {
-  uint8_t thresh = (uint8_t)(constrain(threshold, 0.0, 5.1) / 0.02);
+  // LSb = 20mV
+  // threshold_mv is in millivolts
+  uint8_t thresh = (uint8_t)((threshold_mv + 10) / 20); // Add 10 for rounding
+  thresh = (thresh > 255) ? 255 : thresh; // Constrain to 8 bits
   return setVALRTMax(thresh);
 }
 
@@ -743,9 +751,12 @@ uint8_t SFE_MAX1704X::setVALRTMin(uint8_t threshold)
   valrt |= ((uint16_t)threshold) << 8;
   return write16(valrt, MAX17048_CVALRT);
 }
-uint8_t SFE_MAX1704X::setVALRTMin(float threshold)
+uint8_t SFE_MAX1704X::setVALRTMin(uint16_t threshold_mv)
 {
-  uint8_t thresh = (uint8_t)(constrain(threshold, 0.0, 5.1) / 0.02);
+  // LSb = 20mV
+  // threshold_mv is in millivolts
+  uint8_t thresh = (uint8_t)((threshold_mv + 10) / 20); // Add 10 for rounding
+  thresh = (thresh > 255) ? 255 : thresh; // Constrain to 8 bits
   return setVALRTMin(thresh);
 }
 
@@ -820,10 +831,12 @@ uint8_t SFE_MAX1704X::setHIBRTActThr(uint8_t threshold)
   hibrt |= (uint16_t)threshold;
   return write16(hibrt, MAX17048_HIBRT);
 }
-uint8_t SFE_MAX1704X::setHIBRTActThr(float threshold)
+uint8_t SFE_MAX1704X::setHIBRTActThr(uint16_t threshold_uv)
 {
-  // LSb = 1.25mV
-  uint8_t thresh = (uint8_t)(constrain(threshold, 0.0, 0.31875) / 0.00125);
+  // LSb = 1.25mV = 1250uV
+  // threshold_uv is in microvolts
+  uint8_t thresh = (uint8_t)((threshold_uv + 625) / 1250); // Add 625 for rounding
+  thresh = (thresh > 255) ? 255 : thresh; // Constrain to 8 bits
   return setHIBRTActThr(thresh);
 }
 
@@ -863,10 +876,13 @@ uint8_t SFE_MAX1704X::setHIBRTHibThr(uint8_t threshold)
   hibrt |= ((uint16_t)threshold) << 8;
   return write16(hibrt, MAX17048_HIBRT);
 }
-uint8_t SFE_MAX1704X::setHIBRTHibThr(float threshold)
+uint8_t SFE_MAX1704X::setHIBRTHibThr(uint16_t threshold_scaled)
 {
   // LSb = 0.208%/hr
-  uint8_t thresh = (uint8_t)(constrain(threshold, 0.0, 53.04) / 0.208);
+  // threshold_scaled is in units of 0.01%/hr (1/100th of a percent per hour)
+  // So 100 = 1%/hr
+  uint8_t thresh = (uint8_t)((threshold_scaled + 10) / 21); // Add 10 for rounding, 0.208*100 ~= 21
+  thresh = (thresh > 255) ? 255 : thresh; // Constrain to 8 bits
   return setHIBRTHibThr(thresh);
 }
 

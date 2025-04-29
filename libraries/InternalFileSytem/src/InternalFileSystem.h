@@ -34,6 +34,9 @@ class InternalFileSystem : public Adafruit_LittleFS
 
     // overwrite to also perform low level format (sector erase of whole flash region)
     bool begin(void);
+    
+    // Erase all sectors of internal flash region for Filesystem
+    bool erase(void);
 };
 
 extern InternalFileSystem InternalFS;

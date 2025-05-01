@@ -34,8 +34,9 @@ namespace Adafruit_LittleFS_Namespace
 // avoid conflict with other FileSystem FILE_READ/FILE_WRITE
 enum
 {
-  FILE_O_READ = 0,
-  FILE_O_WRITE = 1,
+  FILE_O_READ = 0,    // Open a file for reading
+  FILE_O_WRITE = 1,   // Open a file for writing (append mode)
+  FILE_O_OVERWRITE = 2,  // Open a file for writing, no seek to end
 };
 
 class File : public Stream

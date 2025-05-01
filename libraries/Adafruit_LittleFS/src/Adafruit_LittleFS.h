@@ -46,6 +46,9 @@ class Adafruit_LittleFS
     // Open the specified file/directory with the supplied mode (e.g. read or
     // write, etc). Returns a File object for interacting with the file.
     // Note that currently only one file can be open at a time.
+    // FILE_O_READ = read only
+    // FILE_O_WRITE = write+append
+    // FILE_O_OVERWRITE = write+update in place
     Adafruit_LittleFS_Namespace::File open (char const *filename, uint8_t mode = Adafruit_LittleFS_Namespace::FILE_O_READ);
 
     // Methods to determine if the requested file path exists.

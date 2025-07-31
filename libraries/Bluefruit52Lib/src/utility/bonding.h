@@ -62,6 +62,8 @@ void bond_remove_key(uint8_t role, ble_gap_addr_t const* id_addr);
 bool bond_save_keys (uint8_t role, uint16_t conn_hdl, bond_keys_t const* bkeys);
 bool bond_load_keys(uint8_t role, ble_gap_addr_t* peer_addr, bond_keys_t* bkeys);
 
+// CCCD persistence functions - save is disabled to prevent flash corruption
+// See implementation in bonding.cpp for detailed explanation
 bool bond_save_cccd (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t const* id_addr);
 bool bond_load_cccd (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t const* id_addr);
 

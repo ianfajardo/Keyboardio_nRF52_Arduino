@@ -142,6 +142,12 @@ void BLEGatt::_eventHandler(ble_evt_t* evt)
       // Save CCCD if paired
       if ( conn->secured() && (evt_id == BLE_GATTS_EVT_WRITE) && (req_handle == chr->handles().cccd_handle) )
       {
+        /* NOTE: This call to saveCccd() is intentionally left in place even though the underlying
+         * implementation has been disabled. This preserves API compatibility and avoids the need
+         * to modify this widely-used code path. The actual bond_save_cccd() function now returns
+         * immediately without performing any flash operations. See bond_save_cccd() in bonding.cpp
+         * for detailed explanation of why CCCD saving has been disabled.
+         */
         conn->saveCccd();
       }
     }

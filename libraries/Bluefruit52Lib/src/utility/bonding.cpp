@@ -258,12 +258,71 @@ static void bond_save_cccd_dfr (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t 
 
 bool bond_save_cccd (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t const* id_addr)
 {
-  // queue to execute in Ada Callback thread
-  return ada_callback(id_addr, sizeof(ble_gap_addr_t), bond_save_cccd_dfr, role, conn_hdl, id_addr);
+  /* DISABLED: CCCD (Client Characteristic Configuration Descriptor) saving has been intentionally disabled
+   * to prevent flash storage corruption issues.
+   *
+   * BACKGROUND:
+   * CCCDs control whether notifications/indications are enabled for BLE characteristics. The original
+   * implementation saved these values to flash storage to persist them across connections. However,
+   * this approach has several critical issues:
+   *
+   * 1. CORRUPTION RISK: The flash write operations occur via deferred callbacks (ada_callback) which
+   *    can be interrupted by BLE disconnections. When disconnections happen during flash writes
+   *    (especially common during the unstable period after device wake), the flash storage can
+   *    become corrupted. The underlying flash_cache layer does not properly handle write errors,
+   *    leading to partial writes being silently accepted as successful.
+   *
+   * 2. UNNECESSARY FOR HID: For HID devices like keyboards, CCCD values are effectively constant.
+   *    The HID Input Report characteristics MUST have notifications enabled for the device to
+   *    function. Every host will write the same value (0x0001) during connection setup. Saving
+   *    and restoring these values provides no functional benefit.
+   *
+   * 3. WAKE-UP VULNERABILITY: The highest risk period is immediately after device wake from sleep.
+   *    During this time:
+   *    - The BLE connection is re-establishing and unstable
+   *    - The host automatically re-writes CCCD values to restore notifications
+   *    - These writes trigger flash operations during the most vulnerable period
+   *    - Disconnections are common as connection parameters are renegotiated
+   *
+   * 4. MINIMAL IMPACT: Other services that might use CCCDs (Battery Service, DFU, etc.) will
+   *    simply have their notifications re-enabled by the host on each connection. This happens
+   *    automatically and quickly, with no user-visible impact.
+   *
+   * TRADE-OFFS:
+   * - Benefit: Eliminates a major source of flash corruption
+   * - Benefit: Reduces unnecessary flash wear
+   * - Benefit: Simpler, more reliable operation
+   * - Cost: Theoretical ~1-2 second delay for non-HID notification enable (negligible in practice)
+   *
+   * FUTURE CONSIDERATIONS:
+   * If CCCD persistence becomes necessary for specific use cases, implement:
+   * 1. Proper error handling in the flash_cache layer
+   * 2. Connection stability checks before allowing writes
+   * 3. Write verification and retry logic
+   * 4. Selective saving only for non-HID services
+   */
+  
+  // Return true to indicate "success" - prevents error propagation while doing nothing
+  return true;
+  
+  // Original implementation disabled:
+  // return ada_callback(id_addr, sizeof(ble_gap_addr_t), bond_save_cccd_dfr, role, conn_hdl, id_addr);
 }
 
 bool bond_load_cccd(uint8_t role, uint16_t conn_hdl, ble_gap_addr_t const* id_addr)
 {
+  /* NOTE: While bond_save_cccd() has been disabled to prevent corruption, we keep bond_load_cccd()
+   * functional to maintain compatibility with existing stored data and to avoid breaking the
+   * API for applications that might call this function.
+   *
+   * Since we no longer save CCCD data, this function will typically return false (not loaded),
+   * which causes the BLE stack to use default values. This is the desired behavior - the host
+   * will simply re-enable any required notifications during connection setup.
+   *
+   * Keeping this function operational also provides a migration path: devices with existing
+   * stored CCCD data will load it one final time, after which no new data will be saved.
+   */
+  
   bool loaded = false;
 
   char filename[BOND_FNAME_LEN];

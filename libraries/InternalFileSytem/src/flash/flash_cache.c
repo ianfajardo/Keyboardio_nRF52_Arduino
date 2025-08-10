@@ -86,13 +86,22 @@ void flash_cache_flush (flash_cache_t* fc)
     // indicator TODO allow to disable flash indicator
     ledOn(LED_BUILTIN);
 
-    fc->erase(fc->cache_addr);
-    fc->program(fc->cache_addr, fc->cache_buf, FLASH_CACHE_SIZE);
+    // Only clear cache if both erase and program operations succeed
+    if ( fc->erase(fc->cache_addr) && 
+         fc->program(fc->cache_addr, fc->cache_buf, FLASH_CACHE_SIZE) > 0 )
+    {
+      // Both operations succeeded - safe to clear cache
+      fc->cache_addr = FLASH_CACHE_INVALID_ADDR;
+    }
+    // If either operation failed, keep cache valid for retry
 
     ledOff(LED_BUILTIN);
   }
-
-  fc->cache_addr = FLASH_CACHE_INVALID_ADDR;
+  else
+  {
+    // Memory already matches - safe to clear cache
+    fc->cache_addr = FLASH_CACHE_INVALID_ADDR;
+  }
 }
 
 int flash_cache_read (flash_cache_t* fc, void* dst, uint32_t addr, uint32_t count)

@@ -58,6 +58,7 @@ class BLEConnection
     bool _connected;
     bool _bonded; // have LTK stored in InternalFS
     bool _hvc_received;
+    bool _initial_pairing_in_progress; // true during initial pairing, false on reconnection
 
     ble_gap_conn_sec_mode_t _sec_mode;
 
@@ -78,6 +79,8 @@ class BLEConnection
     bool     connected(void);
     bool     bonded(void);
     bool     secured(void);
+    bool     initialPairingInProgress(void);
+    void     setInitialPairingInProgress(bool in_progress);
 
     uint8_t  getRole(void);
     uint16_t getMtu (void);

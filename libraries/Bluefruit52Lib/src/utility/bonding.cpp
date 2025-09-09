@@ -258,55 +258,41 @@ static void bond_save_cccd_dfr (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t 
 
 bool bond_save_cccd (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t const* id_addr)
 {
-  /* DISABLED: CCCD (Client Characteristic Configuration Descriptor) saving has been intentionally disabled
-   * to prevent flash storage corruption issues.
+  /* CCCD (Client Characteristic Configuration Descriptor) saving is now limited to initial pairing only
+   * to prevent flash storage corruption while maintaining Windows 11 compatibility.
    *
    * BACKGROUND:
    * CCCDs control whether notifications/indications are enabled for BLE characteristics. The original
-   * implementation saved these values to flash storage to persist them across connections. However,
-   * this approach has several critical issues:
+   * implementation saved these values on every CCCD write, but this caused flash corruption during
+   * reconnections when the connection was unstable.
    *
-   * 1. CORRUPTION RISK: The flash write operations occur via deferred callbacks (ada_callback) which
-   *    can be interrupted by BLE disconnections. When disconnections happen during flash writes
-   *    (especially common during the unstable period after device wake), the flash storage can
-   *    become corrupted. The underlying flash_cache layer does not properly handle write errors,
-   *    leading to partial writes being silently accepted as successful.
+   * SOLUTION:
+   * - Save CCCDs only during initial pairing (when new keys are being exchanged)
+   * - Skip saving on reconnections (when using existing bonding keys)
+   * - This provides Windows 11 with the persistent CCCD data it needs while avoiding corruption
    *
-   * 2. UNNECESSARY FOR HID: For HID devices like keyboards, CCCD values are effectively constant.
-   *    The HID Input Report characteristics MUST have notifications enabled for the device to
-   *    function. Every host will write the same value (0x0001) during connection setup. Saving
-   *    and restoring these values provides no functional benefit.
-   *
-   * 3. WAKE-UP VULNERABILITY: The highest risk period is immediately after device wake from sleep.
-   *    During this time:
-   *    - The BLE connection is re-establishing and unstable
-   *    - The host automatically re-writes CCCD values to restore notifications
-   *    - These writes trigger flash operations during the most vulnerable period
-   *    - Disconnections are common as connection parameters are renegotiated
-   *
-   * 4. MINIMAL IMPACT: Other services that might use CCCDs (Battery Service, DFU, etc.) will
-   *    simply have their notifications re-enabled by the host on each connection. This happens
-   *    automatically and quickly, with no user-visible impact.
-   *
-   * TRADE-OFFS:
-   * - Benefit: Eliminates a major source of flash corruption
-   * - Benefit: Reduces unnecessary flash wear
-   * - Benefit: Simpler, more reliable operation
-   * - Cost: Theoretical ~1-2 second delay for non-HID notification enable (negligible in practice)
-   *
-   * FUTURE CONSIDERATIONS:
-   * If CCCD persistence becomes necessary for specific use cases, implement:
-   * 1. Proper error handling in the flash_cache layer
-   * 2. Connection stability checks before allowing writes
-   * 3. Write verification and retry logic
-   * 4. Selective saving only for non-HID services
+   * RATIONALE:
+   * 1. CORRUPTION PREVENTION: Reconnections after wake are unstable and prone to disconnection
+   *    during flash writes. Initial pairing happens when connection is more stable.
+   * 2. WINDOWS COMPATIBILITY: Windows 11 expects CCCD values to persist across connections,
+   *    unlike other platforms that automatically re-enable notifications.
+   * 3. MINIMAL FLASH WEAR: Only one save per pairing instead of saves on every reconnection.
    */
   
-  // Return true to indicate "success" - prevents error propagation while doing nothing
-  return true;
+  // Get connection object to check pairing state
+  BLEConnection* conn = Bluefruit.Connection(conn_hdl);
+  if (!conn) {
+    return false; // Invalid connection handle
+  }
   
-  // Original implementation disabled:
-  // return ada_callback(id_addr, sizeof(ble_gap_addr_t), bond_save_cccd_dfr, role, conn_hdl, id_addr);
+  // Only save CCCDs during initial pairing, not on reconnections
+  if (!conn->initialPairingInProgress()) {
+    // This is a reconnection - skip saving to prevent flash corruption
+    return true;
+  }
+  
+  // This is initial pairing - safe to save CCCD values
+  return ada_callback(id_addr, sizeof(ble_gap_addr_t), bond_save_cccd_dfr, role, conn_hdl, id_addr);
 }
 
 bool bond_load_cccd(uint8_t role, uint16_t conn_hdl, ble_gap_addr_t const* id_addr)

@@ -62,6 +62,7 @@ BLEConnection::BLEConnection(uint16_t conn_hdl, ble_gap_evt_connected_t const* e
   _bonded = false;
   _hvc_sem = NULL;
   _hvc_received = false;
+  _initial_pairing_in_progress = false;
 
   _ediv = 0xFFFF;
 }
@@ -93,6 +94,16 @@ bool BLEConnection::bonded(void)
 bool BLEConnection::secured(void)
 {
   return !(_sec_mode.sm == 1 && _sec_mode.lv == 1);
+}
+
+bool BLEConnection::initialPairingInProgress(void)
+{
+  return _initial_pairing_in_progress;
+}
+
+void BLEConnection::setInitialPairingInProgress(bool in_progress)
+{
+  _initial_pairing_in_progress = in_progress;
 }
 
 uint8_t BLEConnection::getRole (void)

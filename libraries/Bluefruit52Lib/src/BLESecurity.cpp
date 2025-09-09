@@ -277,6 +277,9 @@ void BLESecurity::_eventHandler(ble_evt_t* evt)
        * - Central supplies its parameters
        * - We replies with our security parameters
        */
+      // Mark this as initial pairing (not reconnection)
+      conn->setInitialPairingInProgress(true);
+      
       ble_gap_sec_params_t const* peer = &evt->evt.gap_evt.params.sec_params_request.peer_params;
       (void) peer;
       LOG_LV2("PAIR", "Peer Params: bond = %d, mitm = %d, lesc = %d, io_caps = %d",
@@ -404,6 +407,9 @@ void BLESecurity::_eventHandler(ble_evt_t* evt)
       // Peer asks for the stored keys.
       // - load key and return if bonded previously.
       // - Else return NULL --> Initiate key exchange
+      // Mark this as reconnection (not initial pairing)
+      conn->setInitialPairingInProgress(false);
+      
       ble_gap_evt_sec_info_request_t* sec_info = (ble_gap_evt_sec_info_request_t*) &evt->evt.gap_evt.params.sec_info_request;
       (void) sec_info;
 

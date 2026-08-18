@@ -64,6 +64,11 @@ BLEConnection::BLEConnection(uint16_t conn_hdl, ble_gap_evt_connected_t const* e
   _hvc_received = false;
   _initial_pairing_in_progress = false;
 
+  // Must be zeroed: bond_save_cccd() builds the bond filename from this
+  // address, and a host that writes CCCDs before key distribution completes
+  // (Windows does) would otherwise have them saved under a garbage filename.
+  varclr(&_bond_id_addr);
+
   _ediv = 0xFFFF;
 }
 

@@ -395,6 +395,15 @@ void BLESecurity::_eventHandler(ble_evt_t* evt)
         }
 
         conn->saveBondKey(&_bond_keys);
+
+        // Also persist the current CCCD state now that the bond identity
+        // address is known. Hosts (notably Windows) often subscribe to
+        // notifications immediately after encryption, BEFORE this event —
+        // any CCCD save attempted back then had no valid identity address
+        // and was lost, leaving a bond that connects but never notifies.
+        // The saves are queued FIFO on the callback thread, so this runs
+        // after saveBondKey's file rewrite and lands in the fresh file.
+        conn->saveCccd();
       }
 
       // Invoke callback

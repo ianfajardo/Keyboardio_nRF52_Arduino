@@ -258,40 +258,36 @@ static void bond_save_cccd_dfr (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t 
 
 bool bond_save_cccd (uint8_t role, uint16_t conn_hdl, ble_gap_addr_t const* id_addr)
 {
-  /* CCCD (Client Characteristic Configuration Descriptor) saving is now limited to initial pairing only
-   * to prevent flash storage corruption while maintaining Windows 11 compatibility.
+  /* CCCD (Client Characteristic Configuration Descriptor) persistence.
    *
-   * BACKGROUND:
-   * CCCDs control whether notifications/indications are enabled for BLE characteristics. The original
-   * implementation saved these values on every CCCD write, but this caused flash corruption during
-   * reconnections when the connection was unstable.
+   * Hosts that follow the spec (notably Windows) assume CCCD state persists
+   * across reconnections of a bonded link and will NOT re-subscribe — a bond
+   * whose stored CCCDs are missing or stale reconnects but never delivers
+   * keystrokes. So CCCD changes must be persisted whenever we have a bond to
+   * attach them to, including on reconnected sessions.
    *
-   * SOLUTION:
-   * - Save CCCDs only during initial pairing (when new keys are being exchanged)
-   * - Skip saving on reconnections (when using existing bonding keys)
-   * - This provides Windows 11 with the persistent CCCD data it needs while avoiding corruption
+   * The historical flash corruption that motivated gating this to initial
+   * pairing only was fixed at the root in flash_cache_flush() (erase/program
+   * results are now checked before the cache is invalidated), and
+   * bond_save_cccd_dfr() only writes when the value actually differs from
+   * what is stored, which bounds flash wear and write frequency.
    *
-   * RATIONALE:
-   * 1. CORRUPTION PREVENTION: Reconnections after wake are unstable and prone to disconnection
-   *    during flash writes. Initial pairing happens when connection is more stable.
-   * 2. WINDOWS COMPATIBILITY: Windows 11 expects CCCD values to persist across connections,
-   *    unlike other platforms that automatically re-enable notifications.
-   * 3. MINIMAL FLASH WEAR: Only one save per pairing instead of saves on every reconnection.
+   * Before the bond exists (key distribution still in flight) there is no
+   * valid identity address to file the CCCDs under — skip; BLESecurity
+   * re-saves them explicitly once AUTH_STATUS lands and the bond is created.
    */
-  
-  // Get connection object to check pairing state
+
   BLEConnection* conn = Bluefruit.Connection(conn_hdl);
   if (!conn) {
     return false; // Invalid connection handle
   }
-  
-  // Only save CCCDs during initial pairing, not on reconnections
-  if (!conn->initialPairingInProgress()) {
-    // This is a reconnection - skip saving to prevent flash corruption
+
+  // No bond yet: nothing to attach the CCCDs to (and no valid filename).
+  // AUTH_STATUS handling triggers a save once the bond is established.
+  if (!conn->bonded()) {
     return true;
   }
-  
-  // This is initial pairing - safe to save CCCD values
+
   return ada_callback(id_addr, sizeof(ble_gap_addr_t), bond_save_cccd_dfr, role, conn_hdl, id_addr);
 }
 

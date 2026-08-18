@@ -1,0 +1,1170 @@
+[
+  {
+    "sha": "5b3721f72416462043fe358d87a2e6cc3a271f05",
+    "node_id": "C_kwDOBG6QKdoAKDViMzcyMWY3MjQxNjQ2MjA0M2ZlMzU4ZDg3YTJlNmNjM2EyNzFmMDU",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-08T08:36:14Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-08T08:36:14Z"
+      },
+      "message": "refactor BLEAdvertisingData to use heap allocation for dynamic buffer management",
+      "tree": {
+        "sha": "6c5d7b91aab72e805fff927bb64524360b5c95d1",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/6c5d7b91aab72e805fff927bb64524360b5c95d1"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/5b3721f72416462043fe358d87a2e6cc3a271f05",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn9oH4ACgkQJvq4T2Fc\nPFKf/g//dzbuxuOK9qcYHP1g8rGv5HNub4QcgAJqm0Kdm4lV2T/Xk2Ow50Tg4p37\nf1S4CkdEqgJcx8njX8IWEv8Q/svw9Re1AS9v0kwDRplwIZYsmy/8Cc+wU57WVJUb\nAJFxkqpe33wNcQHXmcDYybOziDcokz0BZ1L8tnEBSmPpYRU6Hv9C75iLmB7nXt4l\np7PJ76ErwcBh8XXfNQQCFImjbXyeNAe3yffQUEbe7Mw8XcJiYfC5Hpk33UHzNgRY\nOejRb+JgnkL/YDuvGDVJLFHPzx8UuzNoxbUu9AqbUYveF/apR5WoXoJhYzpRqJVW\nfMMOC5adO5MHbNmmZ/oD1DeJHsxTZngAhhVRRBWBVZHS5rHls3AX2prLtIts5R2q\nYLTNnW8/FmkqwAf/HKAGgDuXIyHhjJPDclnM5wrd5TSb5nM0383vdZAddE8noyaZ\nuEPX944p2Mzc9UzQvUmWN35uB0ARbHz13NQVoVX5kn1EpFW/g5AOy+7ytJITIkzY\nsQI7tr2UBK7RuLHk1vYcAYqoI72tqB9ynv784j+XnUFLbfNyDF/FwMyXZfnCyVDB\n+wdMeqfbIyBO63MRmqJClOENKv4tmQxas48GiwXM7u+24Pg8jqFuiyq4vJij2x5r\nZhlRe4D/AN+dpypSkry+KmyP+/D0W0HuYQjMfhjEfSXNa0U7Ceo=\n=Icmf\n-----END PGP SIGNATURE-----",
+        "payload": "tree 6c5d7b91aab72e805fff927bb64524360b5c95d1\nparent 7594ddcd48fca33c8df7788223d8d53064be0a02\nauthor hathach <thach@tinyusb.org> 1778229374 +0700\ncommitter hathach <thach@tinyusb.org> 1778229374 +0700\n\nrefactor BLEAdvertisingData to use heap allocation for dynamic buffer management\n",
+        "verified_at": "2026-05-08T08:36:37Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/5b3721f72416462043fe358d87a2e6cc3a271f05",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/5b3721f72416462043fe358d87a2e6cc3a271f05",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/5b3721f72416462043fe358d87a2e6cc3a271f05/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7594ddcd48fca33c8df7788223d8d53064be0a02",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/7594ddcd48fca33c8df7788223d8d53064be0a02",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/7594ddcd48fca33c8df7788223d8d53064be0a02"
+      }
+    ]
+  },
+  {
+    "sha": "7594ddcd48fca33c8df7788223d8d53064be0a02",
+    "node_id": "C_kwDOBG6QKdoAKDc1OTRkZGNkNDhmY2EzM2M4ZGY3Nzg4MjIzZDhkNTMwNjRiZTBhMDI",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-07T09:21:16Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-07T09:21:16Z"
+      },
+      "message": "revert lib author",
+      "tree": {
+        "sha": "84bad754adf926f46122f8cd768232758436982c",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/84bad754adf926f46122f8cd768232758436982c"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/7594ddcd48fca33c8df7788223d8d53064be0a02",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn8WYwACgkQJvq4T2Fc\nPFKpBA/+JhPX/RGykJhCYPOlrc34NbcRMvI3kvOtIdiPW7Sn4y56ySzXflseEeQe\nVmg9kkm1tifMKVkRpRUIm1esjT2AElXNCyLpIGVUy7vpyQ6Qf5whtAs+wNE3Znz9\nJH+gvYCTmnjx5SWeHL2JI1gx6hEdrjPWfVpDUQG+Q+biwWYmxp/pT2OcD2bTVD/O\nOLlfhnEw9RM/KnMJsY5klTUju/zORsKszTl4EERHDi+S7d3JnkMIpmmuofhOSNVk\nLsgLpnyccjAo+PyXbgJMf5os2kiahn7Y7XS9Yyud/iIMAwibKlrL+oTuEnu+gBt4\nRTwzvZ6uWKdEway3nWK+ZS53j5UaYBfO53ZHb8C/RNso41hGPbCN+BqLT284s6rH\nnFpVRPrcxQ1tx6MumaengchE3EENCLTqy+zMkgdKNV9mpN6kdsH7sy8i9bJJYdhe\nolaeXfw6rCCIPt8+k7vovBQA4kYAATfIo6EVgM1CKtyOyFbiBRGTMIOsg8vowI//\nZgVhQPND6MAAf80wk1SxKG4HZr+peYCTrcIiQ1nE6aVRYJxiLySPoIy7uFyRCMfa\nPAJj4GnovM12wfdWkkFcro5YL4NHIZEy/Ff7wb34i2G+oSxZpYgmoYuXJJkdsGU1\n8Cdbqxi5r/7n+yb10l8JKyHulP3wx1YN4MFhO8qEN8hEj/pHgp8=\n=WmVr\n-----END PGP SIGNATURE-----",
+        "payload": "tree 84bad754adf926f46122f8cd768232758436982c\nparent 6ed9ce7322fea89060ed67da1c8941f102be4826\nauthor hathach <thach@tinyusb.org> 1778145676 +0700\ncommitter hathach <thach@tinyusb.org> 1778145676 +0700\n\nrevert lib author\n",
+        "verified_at": "2026-05-07T09:21:26Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/7594ddcd48fca33c8df7788223d8d53064be0a02",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/7594ddcd48fca33c8df7788223d8d53064be0a02",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/7594ddcd48fca33c8df7788223d8d53064be0a02/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "6ed9ce7322fea89060ed67da1c8941f102be4826",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/6ed9ce7322fea89060ed67da1c8941f102be4826",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/6ed9ce7322fea89060ed67da1c8941f102be4826"
+      }
+    ]
+  },
+  {
+    "sha": "6ed9ce7322fea89060ed67da1c8941f102be4826",
+    "node_id": "C_kwDOBG6QKdoAKDZlZDljZTczMjJmZWE4OTA2MGVkNjdkYTFjODk0MWYxMDJiZTQ4MjY",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-07T09:13:55Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-07T09:13:55Z"
+      },
+      "message": "Merge branch 'master' into fork/jnsbyr/feature/extended-advertising",
+      "tree": {
+        "sha": "79d8e3bfa7b05a4eed990df4f60e3b3705feb22b",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/79d8e3bfa7b05a4eed990df4f60e3b3705feb22b"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/6ed9ce7322fea89060ed67da1c8941f102be4826",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn8V9MACgkQJvq4T2Fc\nPFK25RAAqgvlgTky49E2pk9sRdUdfbmjlFH/VNcsABVgVIb0n446dZzv86bQM4AA\n+/qiw6Xiq31uhcLTqPIZtGABrxDRBJGVcx2liF82VmQhyKhQpfsZPFJQw2ETxKnJ\nIUNQDgITl6X3rAbZeywmNPhi2K7ip3NvtNtEkthxaKKIsc57ZvhSth+yB4ctTSHE\nrxa6n+XnLgQUzYrAzVERS7Hm36zopZML9kDx+BvaQNnSivAIhgWvHsntCufQDWEA\nLg+hn08ZWQnuKQ5GljF203FK2A4onBeshJ0y4i66eG/DWuWYeL2xt73AvLODySG4\nxETpwjNpAwPYkHDhEVa5dZvPAzfE4M/jIVpY7pTMPhJIIzj9vyUEMxq7DcVgVA0F\nU7/1hglg01XE89ZeQUsUDSOaaid1XQ6nkceLduBmhr0z5KSl9+gbi5ok4G9qOIlK\nJ8sJTWJwINgHB8RqymdmNqECb/2nPm/5Z8rwkBA2CtaQn9h3Ti45L2uFwkuuuU2l\n/Y+vYdrxYxcYfeyV9NDJVt5KFO8hLKwKrd22a7rbgbrXnvEAi9UehcK14n0nFKZh\nRGEAlFX4la57H/Sb0EmgKPZC+PLGBdekmwF9DvxuLsB+zScyALtYk81c3iB9ZWQX\nXnp5IOFT7AAp4Ju7Jx+iBj2dd20ZPnpOQigtJwhAmo1azyKvg1o=\n=FqjU\n-----END PGP SIGNATURE-----",
+        "payload": "tree 79d8e3bfa7b05a4eed990df4f60e3b3705feb22b\nparent 560d7773be2f543f8a73a6cf0c3bb807c2bc4dbc\nparent a0aad4752b2d6036dbc9841d45ea54fea53a12b0\nauthor hathach <thach@tinyusb.org> 1778145235 +0700\ncommitter hathach <thach@tinyusb.org> 1778145235 +0700\n\nMerge branch 'master' into fork/jnsbyr/feature/extended-advertising\n",
+        "verified_at": "2026-05-07T09:21:26Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/6ed9ce7322fea89060ed67da1c8941f102be4826",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/6ed9ce7322fea89060ed67da1c8941f102be4826",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/6ed9ce7322fea89060ed67da1c8941f102be4826/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "560d7773be2f543f8a73a6cf0c3bb807c2bc4dbc",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/560d7773be2f543f8a73a6cf0c3bb807c2bc4dbc",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/560d7773be2f543f8a73a6cf0c3bb807c2bc4dbc"
+      },
+      {
+        "sha": "a0aad4752b2d6036dbc9841d45ea54fea53a12b0",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/a0aad4752b2d6036dbc9841d45ea54fea53a12b0",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/a0aad4752b2d6036dbc9841d45ea54fea53a12b0"
+      }
+    ]
+  },
+  {
+    "sha": "653b9113f0f75dcbdce0705f3c29d8545ae17ed3",
+    "node_id": "C_kwDOBG6QKdoAKDY1M2I5MTEzZjBmNzVkY2JkY2UwNzA1ZjNjMjlkODU0NWFlMTdlZDM",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T09:52:24Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T09:52:24Z"
+      },
+      "message": "reset HVC state before sending indication to prevent stale signals",
+      "tree": {
+        "sha": "3c4ca8f27afbc88a599d532eda0cb2331b7b4bfb",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/3c4ca8f27afbc88a599d532eda0cb2331b7b4bfb"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/653b9113f0f75dcbdce0705f3c29d8545ae17ed3",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn7D1gACgkQJvq4T2Fc\nPFJ1IhAAzzBHoV1UY/vpLJ2yMWtzeqLBZww4cj/QpmTKtzecOE5irBBe9wKR25Og\n/dSYaAxat+obl4Rql8voNkr68OBSlXWqSdtdI/DnIc4UYav6FNzH84O7hxri03J8\n9TjcaHq9SQEzvTUkDw70m7qhHBjKJ22HbjDDaxQqRdnQi5VAG0qX0edmAZUFPhXT\nGc+PFtNW1aSDTAaYN/zPhxawBwvohjvlKd6Bf6Ef9E8tf+5fl2vAuKE1vQVOjnJq\nBs7EWgvZiqwAWHQik1znUYh8j7xHJoR7t0T6Y6F/czp9gSO3PhIAp7Vqy9w1N6f2\nR67o+vijl4oTJb3HjvVShtpx3MgwUyM67pQMsPMGjuELHADKl/V1OiZIyM7nvMcS\n+vejh6tZ17GGkPxkQ7BSNShdXLqt+DeUmiKRkUmm/VWblnZAf4ZOTBrKCR9d4N8C\n9x1MAoYDKevf8YrCNGr6SQRE04wTkm3GE0oBd36PstoY9DsW1HhndKRq86SfKMhp\nR67+fZt4hG8TG6rsiQ6NCbtSyu9qak7W89M368Ka1J1Wz5Q5RKa6Z2QF7uF7Ai0F\nIpOCzfVF6CBpkBkCsT+OYdX5QBtNwwNR1SUmBn+Nh7fPykMmiL74xxGHmB2LmJK/\nIgKU4D/lhRdA1K+bgaekGxub9Ld5h3YsWYFUpZc6PneMyNTZaK4=\n=VAvJ\n-----END PGP SIGNATURE-----",
+        "payload": "tree 3c4ca8f27afbc88a599d532eda0cb2331b7b4bfb\nparent 2458c7705dc32a7c5fb6f46da086acbe6af1a8a3\nauthor hathach <thach@tinyusb.org> 1778061144 +0700\ncommitter hathach <thach@tinyusb.org> 1778061144 +0700\n\nreset HVC state before sending indication to prevent stale signals\n",
+        "verified_at": "2026-05-06T09:52:35Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/653b9113f0f75dcbdce0705f3c29d8545ae17ed3",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/653b9113f0f75dcbdce0705f3c29d8545ae17ed3",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/653b9113f0f75dcbdce0705f3c29d8545ae17ed3/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "2458c7705dc32a7c5fb6f46da086acbe6af1a8a3",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/2458c7705dc32a7c5fb6f46da086acbe6af1a8a3",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/2458c7705dc32a7c5fb6f46da086acbe6af1a8a3"
+      }
+    ]
+  },
+  {
+    "sha": "2458c7705dc32a7c5fb6f46da086acbe6af1a8a3",
+    "node_id": "C_kwDOBG6QKdoAKDI0NThjNzcwNWRjMzJhN2M1ZmI2ZjQ2ZGEwODZhY2JlNmFmMWE4YTM",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T09:30:07Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T09:30:07Z"
+      },
+      "message": "reuse HVC semaphore to avoid race conditions and stale signals",
+      "tree": {
+        "sha": "541f667a0ea0b244055a207daf8049d4e473d080",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/541f667a0ea0b244055a207daf8049d4e473d080"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/2458c7705dc32a7c5fb6f46da086acbe6af1a8a3",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn7Ch8ACgkQJvq4T2Fc\nPFJibQ//aTQSJKnyW7Vtey1s0loqthyAraGGqd9bxAwztlNPWHNVZ+fXY4ETGuZ4\n2npKAs/18KENpTE6en6KUZ1Ao1D3tln+j8Onyo3OWklBFpgFNhIXXhligYQnqqBw\n8MHqpZSpnY8rD43tj0dVJdfaltSb4Up7WIl6HL35u2gvARO5pmAE9fUzQi815Qgj\n1IoIBjTgQBcMRFDp58OZ/nnINQ1CeKqhG2yRsScLoPUIkDruTK7Ks9EWKTKhtIOo\n0qgWg5EUC6utZX0LiBFFDEahN26/lNf8QyvUkHD+he+353UCcnooC3WvwdY0yAuF\nFW9Nn9WSnN+6pDSw5hWR4fAfeLRCOP1gcLBR5lxxwxRVNbeLuK3X5qo7kNV4NTnX\nunH8Ibur7Vh43YMhPBne40aPHDqqD+vUHHS3soDpmt1hUy5+WzvtHT0TPs/uVuuf\nBzve0r10E8cBoxIlXsEtOrVY/j0HW/waCVFl8VHI28BfZyw6RrEsuGZyr/BHh/G4\ncxaF0JCdLtBn8jgm+n2wdzJIAtvLH2iTbKhPVaJjshU+x7KdqNOudlITWd0Bh2TM\n03Gev666vZ2TE+b0j6mbkhLnfjUc44lJhrwAhp6Ib4Xh3K8HsQio/9/gMVdA2Dw7\ncVppdwHfyydub/s3mmn2H1QFynN+wXzkdKeDo6MNZD/XTlvZnF8=\n=4h38\n-----END PGP SIGNATURE-----",
+        "payload": "tree 541f667a0ea0b244055a207daf8049d4e473d080\nparent 78c2d9deeab08b92dbd78a411f4e1a17e709946e\nauthor hathach <thach@tinyusb.org> 1778059807 +0700\ncommitter hathach <thach@tinyusb.org> 1778059807 +0700\n\nreuse HVC semaphore to avoid race conditions and stale signals\n",
+        "verified_at": "2026-05-06T09:30:18Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/2458c7705dc32a7c5fb6f46da086acbe6af1a8a3",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/2458c7705dc32a7c5fb6f46da086acbe6af1a8a3",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/2458c7705dc32a7c5fb6f46da086acbe6af1a8a3/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "78c2d9deeab08b92dbd78a411f4e1a17e709946e",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/78c2d9deeab08b92dbd78a411f4e1a17e709946e",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/78c2d9deeab08b92dbd78a411f4e1a17e709946e"
+      }
+    ]
+  },
+  {
+    "sha": "78c2d9deeab08b92dbd78a411f4e1a17e709946e",
+    "node_id": "C_kwDOBG6QKdoAKDc4YzJkOWRlZWFiMDhiOTJkYmQ3OGE0MTFmNGUxYTE3ZTcwOTk0NmU",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T08:28:56Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T08:28:56Z"
+      },
+      "message": "Merge branch 'master' into fork/AndreasLamparter/master",
+      "tree": {
+        "sha": "4e0aa8620ee3350b91eb8c572fe387cd9fb29030",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/4e0aa8620ee3350b91eb8c572fe387cd9fb29030"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/78c2d9deeab08b92dbd78a411f4e1a17e709946e",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn6+8gACgkQJvq4T2Fc\nPFKS1hAAm0bsi6S19vxaEO+HVzVcoEMzizzwsMN8WzdYxQ+zo9OiMelr3tCRChuH\n1qgGwOBUgEOJxzeLjPTUyjsnx0bT983QQMuR/g1RkhoQczX/n2isuxpJavTX1mdh\nF5Bhu6+ZWLi6zE2v3lJyfdIsuvOlEth/MohgXAbzUBIxeWwhXmdR40GRxaEPn8B7\nj89CYxqsQSywsH557q+liZsvmzuEeF6tVbGsESYicY2P6kIJQBa6Fvqrrvbjin+P\nv3/1Euyq3ya1AD7QydGF5KR4CxJgt+Tt0aUAyMrSgokxaSvoWMRRDBanAvYHRD7+\nlVMCCd9CzFgnj94naHscLvNEkchTXrWUX4yNGidvdFAM34euVSFYUIJaj7Q/8cSs\nEgFDR/filfMp60sIVhhiVCg3QqbJyVkKVheAk/en0Xga7zcnHR9+9BdQuZhPehKK\nJdqgZedf4NRmdP4fpRwDMZLCKChZRl+G+d2iGxUcM6vctNVCl8Uu8IKaC5nAX1PP\nhi8YgkSbuhnvy3jIbp4hT8KZ+MHr84akurh7qN9SioJZUIhDxBGlHhuSGfUYN3l5\nXvREkE3JQLNcvQGze/DcFoLX8q2YxsKOiQV0KnY+lU6LsSVOQkPc1f64fTGKgrKq\nYxF7cEi+UklxcGCKPKCZmAYPe1LLJb/S4AwspUDhCEjybioZuT4=\n=1ybp\n-----END PGP SIGNATURE-----",
+        "payload": "tree 4e0aa8620ee3350b91eb8c572fe387cd9fb29030\nparent 48d063be83911a10ab9ead9f92e79b0aa6c23a55\nparent af92c0903d41ab8f4bbefa6fe71cf11948478a3c\nauthor hathach <thach@tinyusb.org> 1778056136 +0700\ncommitter hathach <thach@tinyusb.org> 1778056136 +0700\n\nMerge branch 'master' into fork/AndreasLamparter/master\n",
+        "verified_at": "2026-05-06T08:29:06Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/78c2d9deeab08b92dbd78a411f4e1a17e709946e",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/78c2d9deeab08b92dbd78a411f4e1a17e709946e",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/78c2d9deeab08b92dbd78a411f4e1a17e709946e/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "48d063be83911a10ab9ead9f92e79b0aa6c23a55",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/48d063be83911a10ab9ead9f92e79b0aa6c23a55",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/48d063be83911a10ab9ead9f92e79b0aa6c23a55"
+      },
+      {
+        "sha": "af92c0903d41ab8f4bbefa6fe71cf11948478a3c",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/af92c0903d41ab8f4bbefa6fe71cf11948478a3c",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/af92c0903d41ab8f4bbefa6fe71cf11948478a3c"
+      }
+    ]
+  },
+  {
+    "sha": "48d063be83911a10ab9ead9f92e79b0aa6c23a55",
+    "node_id": "C_kwDOBG6QKdoAKDQ4ZDA2M2JlODM5MTFhMTBhYjllYWQ5ZjkyZTc5YjBhYTZjMjNhNTU",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T08:28:43Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T08:28:43Z"
+      },
+      "message": "minor clean and rename",
+      "tree": {
+        "sha": "9e8a473f2b2c5d57baa5461cb8c3fe685462c779",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/9e8a473f2b2c5d57baa5461cb8c3fe685462c779"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/48d063be83911a10ab9ead9f92e79b0aa6c23a55",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn6+7sACgkQJvq4T2Fc\nPFLhaxAA0b/yhQOkfJxtR6YT6n1DABEz4HMrt/7RRjR8DKeA0xpELxSJu0g7ELUq\nGKqACpKX7z8m37661lqSruGrM9mqFlPXBbOpWr4pzI2E1zfKyk8hybIKt1VZlPBq\nAr7pmHzw2GBtyhrsf907Y0XEtYHmDF/cubH5h17gfVusPZOnFdJINbPmcqRG6foM\nESgYtWmoXJD4+svDpXqr/0AAeOaABJXuhy8Eb63InPBzau8RsNoy9E+lAwr6RTUp\nKfI3ThLA52MiC7cTYXTZdGVn9x0oUt+pTOXwpOXdokRQiajQF+MFViT91k1H6chN\n4O1PiDy32oYd2iiiKZN/fgQq1j2ZhnJCoA7qM4PmGVEYBFy0MsZ5kO8SIGQtVe7G\n1VnsTdUkeoK33fxQcId4oN8dfduGIE5VlN5HnCtmX7N5mi6B6I6J4hDaVJ1bjWAv\nducBvwyLajf6enP9BmNFkzqxgs+YJAThj7PdHM6MXUVbtZXgVprTO7k9e27ygWn2\n+kW/lV8SwxdzcxqQvXJ+a7Csp/h7ex8hQK0bGLQMa1EB9U69Z8vV36wzJ6WPzRii\n5pZbhT5+B0gkA1Q+7fOlMrnYP4M9vIz2BiF0aXozewTO1rK0uWf3cBuhGCjJcfZa\nmu9zocQXHuiyJhd8PKLQ9OrS6BX/J3v4ucZaDa21ayEAsDQ/6k4=\n=5pMU\n-----END PGP SIGNATURE-----",
+        "payload": "tree 9e8a473f2b2c5d57baa5461cb8c3fe685462c779\nparent e0926a4309427a1c882ce3cc7600a83fac277a22\nauthor hathach <thach@tinyusb.org> 1778056123 +0700\ncommitter hathach <thach@tinyusb.org> 1778056123 +0700\n\nminor clean and rename\n",
+        "verified_at": "2026-05-06T08:29:06Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/48d063be83911a10ab9ead9f92e79b0aa6c23a55",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/48d063be83911a10ab9ead9f92e79b0aa6c23a55",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/48d063be83911a10ab9ead9f92e79b0aa6c23a55/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e0926a4309427a1c882ce3cc7600a83fac277a22",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/e0926a4309427a1c882ce3cc7600a83fac277a22",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/e0926a4309427a1c882ce3cc7600a83fac277a22"
+      }
+    ]
+  },
+  {
+    "sha": "af92c0903d41ab8f4bbefa6fe71cf11948478a3c",
+    "node_id": "C_kwDOBG6QKdoAKGFmOTJjMDkwM2Q0MWFiOGY0YmJlZmE2ZmU3MWNmMTE5NDg0NzhhM2M",
+    "commit": {
+      "author": {
+        "name": "Ha Thach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T04:29:10Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-05-06T04:29:10Z"
+      },
+      "message": "Merge pull request #849 from RobertDaleSmith/hid-generic-feature-reports\n\nAdds feature reports support on Bluefruit52Lib's BLEHidGeneric service",
+      "tree": {
+        "sha": "d48ff7153aba9ae4a9339fe0e07ba1ae2a82bb09",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/d48ff7153aba9ae4a9339fe0e07ba1ae2a82bb09"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/af92c0903d41ab8f4bbefa6fe71cf11948478a3c",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJp+sOWCRC1aQ7uu5UhlAAA5jcQAKy1/qpTDWOicg/D+i8EAUJF\n40FPMrya7TEfALpdBVT8T1yuongdiY0dRDwt5UpSeTIUGA84BpHczRa7uBGHkvnh\niZb9XYQ7K3MXt/XnPNlGjMKY31DusMyvhabCiiqUaNQ4NhDOu4nmi3A2+XX0JwYs\nmOvlWCwKYF03CSS0aO36CCfkmTcJl67HL1piu8iZFyIBUJUNnItoOsQHdK351Nkk\nos3MuIoxw7KLjDe+b12wjnw8Vr9+q/tD9eBusvLAr9BNF8QQ6tPOofyKQof0g3pP\nxwyonFvPYwPGlS39J1rs8WJVDmuavlcP3hCGVOcmPsAefedzR/XmBU6J/bhEUS7U\nY11kxMXjtWX336aJLv+9nw0kYNUIr26U36UgBAvRYx0n0cR1zLYGxi2dtmqDr5tw\nsLGfaSLwYYVDfpmN8gV7SO8AOqrWsAoSgZ8fMC0Sw4rvlSUWFBGi1l05SK+yE1XU\n+rgW47kCYllhLnzGy25jpFKRvHu4+iToxyL/yKkNFPDgp3XQqQXchGQI5Zk1lTEA\nX6FshJ6+4eRTc/PA6uruzUENEN2qGkAEM5U79ag0UroqOeXSuqtrfsDywqv+471v\nibGRTZ8V3KyCM8Pqt3tuxdTGHOtinYtWiq86W49N8MA+p3zrPuGk5djM6MM5u7gi\nLS9f5+7G7u82R5tZUVWS\n=fNLR\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree d48ff7153aba9ae4a9339fe0e07ba1ae2a82bb09\nparent a7835c6b5e3fe359ef0c5c01a8f364475061ff27\nparent c8af1844a2551f754065e647d5cee4039c47b2f4\nauthor Ha Thach <thach@tinyusb.org> 1778041750 +0700\ncommitter GitHub <noreply@github.com> 1778041750 +0700\n\nMerge pull request #849 from RobertDaleSmith/hid-generic-feature-reports\n\nAdds feature reports support on Bluefruit52Lib's BLEHidGeneric service",
+        "verified_at": "2026-05-06T04:29:11Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/af92c0903d41ab8f4bbefa6fe71cf11948478a3c",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/af92c0903d41ab8f4bbefa6fe71cf11948478a3c",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/af92c0903d41ab8f4bbefa6fe71cf11948478a3c/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "a7835c6b5e3fe359ef0c5c01a8f364475061ff27",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/a7835c6b5e3fe359ef0c5c01a8f364475061ff27",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/a7835c6b5e3fe359ef0c5c01a8f364475061ff27"
+      },
+      {
+        "sha": "c8af1844a2551f754065e647d5cee4039c47b2f4",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/c8af1844a2551f754065e647d5cee4039c47b2f4",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/c8af1844a2551f754065e647d5cee4039c47b2f4"
+      }
+    ]
+  },
+  {
+    "sha": "c8af1844a2551f754065e647d5cee4039c47b2f4",
+    "node_id": "C_kwDOBG6QKdoAKGM4YWYxODQ0YTI1NTFmNzU0MDY1ZTY0N2Q1Y2VlNDAzOWM0N2IyZjQ",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T04:08:45Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-05-06T04:08:45Z"
+      },
+      "message": "update BLEHidGeneric feature characteristic permissions and cleanup formatting",
+      "tree": {
+        "sha": "0c16c5df50287c545ca29ac7fa68ae1c8ef2a832",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/0c16c5df50287c545ca29ac7fa68ae1c8ef2a832"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/c8af1844a2551f754065e647d5cee4039c47b2f4",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmn6vs0ACgkQJvq4T2Fc\nPFJ0lBAAjZYf+3oG4uAuKk/KH4dVV2iCNs5kBeQR8OgguFOmX2Dxw8uquNtyUE1j\nDNiojoXMDRQR0gMWiU/e/OfB1cvLdP/P7X3OYO8DWgPWjT+ZZO0avALOY9XexnXf\nECdptpCbIuFYLQ2uVZgOsFQv1PWfGZAIlL2CA4y0BA+8sHxa6OdWJTLkv7EH4w5M\nPOLbYqHrEMtK0/x8GPclyePMlehTs1ICMP+7yTDIvTwTtxb+72WFfdsBzSE6weki\n2wUFEdaSGjj2Jw1RYFLR5sEIvanuVnLrQssVCYBO4YErTk+GzZrXKr/Lsxh4biaj\nd8bMDh4Z8SqQb3IB6TvGwmqTOUiwFP/Rnpi870iqh+IHix7t4VNGtcgLFhn2JblN\nntdm/BrLFUCc025ezQ4UaHx2F2tECXV0v67MQaLCS6Xk0RCmJQC8xVqGhr3Oafel\ntT8KZJZbQ1NeEkMjCCrvvW2ytLwfRGuu0hO+QSw3XTYEHfHvNJTgTfgzLyIW7OUL\ng883RHbbiZ8FBEmTml6AcIxR7+/Zr5hC5TUDikou7Bw2m1MMv9GzLnE8RFYjvq3R\n3XUWnjmdsrueEqOcN73BnMZ55G2Z1HER6WIUUnVhmolY2D3U7Y8dPywK6xpQPKoK\n74b6VAv79TFIM2ziWXdeffturDNN1JpJjouguH3tc4IMBVJ/v4k=\n=vn1Y\n-----END PGP SIGNATURE-----",
+        "payload": "tree 0c16c5df50287c545ca29ac7fa68ae1c8ef2a832\nparent 9805a64d6f31a2b4c11f986270fc077298dc5782\nauthor hathach <thach@tinyusb.org> 1778040525 +0700\ncommitter hathach <thach@tinyusb.org> 1778040525 +0700\n\nupdate BLEHidGeneric feature characteristic permissions and cleanup formatting\n",
+        "verified_at": "2026-05-06T04:09:15Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/c8af1844a2551f754065e647d5cee4039c47b2f4",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/c8af1844a2551f754065e647d5cee4039c47b2f4",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/c8af1844a2551f754065e647d5cee4039c47b2f4/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "9805a64d6f31a2b4c11f986270fc077298dc5782",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/9805a64d6f31a2b4c11f986270fc077298dc5782",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/9805a64d6f31a2b4c11f986270fc077298dc5782"
+      }
+    ]
+  },
+  {
+    "sha": "0e6562df6ed3e14f126186c13f055be13b78bec2",
+    "node_id": "C_kwDOBG6QKdoAKDBlNjU2MmRmNmVkM2UxNGYxMjYxODZjMTNmMDU1YmUxM2I3OGJlYzI",
+    "commit": {
+      "author": {
+        "name": "Ha Thach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-03-18T11:51:18Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-03-18T11:51:18Z"
+      },
+      "message": "Potential fix for pull request finding\n\nCo-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.github.com>",
+      "tree": {
+        "sha": "ae8534deb07b4aa831a5f92bd254ecd6b31067db",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/ae8534deb07b4aa831a5f92bd254ecd6b31067db"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/0e6562df6ed3e14f126186c13f055be13b78bec2",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJpupG2CRC1aQ7uu5UhlAAANasQAHtseAqz3iAx8ER34S1vrBr9\nHO/t6ObprU2egQpCRkFgF7U/kRkrok/EHPT2I1FELRgwSgj1FXzijrXSm1iPRMVg\npFYEAPJMZCftcMHYEBG0Nx3choXeNUmq8AeRmVXzRqbdjjH//F0PeTLirUHvqW42\n7DJ5jafn1doqZgRPdVp6nL5S04gR7m33i8zL1G7uyx8Yed+2FTIB+UmkRCkV1ked\ntxkYiSuoqnhPb7tAUUe7keN/4af3QzNNCnBD48l8eUBt8wXr6ffnsby/qx4PXQq1\ny5DitbFXxI/IupwKT7kutcISkQSRPNDngwH/C/K4yMi211cgwQb4Z3D0R7uboysF\n8Oh2+VWYcybU8W/VHlfa78a6DgthlZva5RyD5bdVc5JBFJ6TjLg0Uod/g63i+OuN\n1GRnYHlawqrjV4tTHgFwB0zLA//nULiKrQGlBfuHuqr5OnPmlgCdgLm0SeSECrSD\nCj4Sfi4B3kU+FtonsE+mAqzCy5jfXUTQPMFHM2koAc5YjHw/oWHth6vm7tWAN1so\ngmbQ41r4LBMSdjToS6nncW+LRNj+S2Lz/LfJgWZ8/3ueFvnLYX0o/GQfeinLLtVG\n1Xizq3ZxkVVNj0CNnAkuDzT833LDQFEMHR+TGOy9PXxkRQ9kkw2DjgwPc2crxuS0\nRswl4i8kMUGBZhmZeoTm\n=z+pT\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ae8534deb07b4aa831a5f92bd254ecd6b31067db\nparent ec0a415838e7a8ea8be987abf0a048b13bd628f3\nauthor Ha Thach <thach@tinyusb.org> 1773834678 +0700\ncommitter GitHub <noreply@github.com> 1773834678 +0700\n\nPotential fix for pull request finding\n\nCo-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.github.com>",
+        "verified_at": "2026-03-18T11:51:19Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/0e6562df6ed3e14f126186c13f055be13b78bec2",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/0e6562df6ed3e14f126186c13f055be13b78bec2",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/0e6562df6ed3e14f126186c13f055be13b78bec2/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ec0a415838e7a8ea8be987abf0a048b13bd628f3",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/ec0a415838e7a8ea8be987abf0a048b13bd628f3",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/ec0a415838e7a8ea8be987abf0a048b13bd628f3"
+      }
+    ]
+  },
+  {
+    "sha": "ec0a415838e7a8ea8be987abf0a048b13bd628f3",
+    "node_id": "C_kwDOBG6QKdoAKGVjMGE0MTU4MzhlN2E4ZWE4YmU5ODdhYmYwYTA0OGIxM2JkNjI4ZjM",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-03-18T11:41:36Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2026-03-18T11:41:36Z"
+      },
+      "message": "stop blink timer in autoConnLed(false)",
+      "tree": {
+        "sha": "02f400a84865a2fe9058f42a632893751b5984e4",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/02f400a84865a2fe9058f42a632893751b5984e4"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/ec0a415838e7a8ea8be987abf0a048b13bd628f3",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmm6j3AACgkQJvq4T2Fc\nPFJlMQ/+I6q3a8lADWzJ1T1L5iaVMKizsDCE/hZsiyNA5xVnJXOS5x9bwxocVCCc\nnlE+2uJq1lGPrG7SQBxbyM66iJWOP68RNIIzwTkf0LVFiETzWA81pAQAkx7x40T8\n7vCBMP/7VZnHeFds4rQpUpCjJBu32uzSch18zr0GiBEQ9jCE9L+QoHDHjmbWzdB+\nY7uGVwItY6qAEmXZgJaiWkhZoVDdam8TPVxljrerqRmeKNGT1tCgNgVRwtOklZCI\n/gpt8DuKLopyRzTSeHPxeysPMbOGozJ+DY+kf0k56q7kjI9z2GUW87R+3WGkj+lN\n8N2NcH763KbfpSfVtBr3S6WNvfxeCfwi4eZj36dOo2QzoLUSVcJxavpWPz+F7OEl\nukLunFfPwsDBXdfTPvJaChoM97Ni85++yty9c8zi4uBxqPDeX4t1PVjOpK7y+Rwc\nTVm8gslea9L2l7rikZkyJ0TTVVrw4QSLMjN59xft7LLmB/1ujIE/HWd+ozOug4nw\nixJTJZsq/NE+uDKNSgOjbkg91XNmFGCNNUh0kVkbnkBLNf32A3M2fQi1vb/ru7ix\nr27EFD4uM2uLLnmf5eRPTdXwbiaPcqovXn+oGWZFmf25ioeuCRx1Yn668CmDCq+z\nV9NWQ8+EwWFQFNynqLnn48BO1gJpASpTSPo+fXr5avUMT3MXtmE=\n=vf1V\n-----END PGP SIGNATURE-----",
+        "payload": "tree 02f400a84865a2fe9058f42a632893751b5984e4\nparent a162b65032887a48dd332ccce6351daf78f6f02d\nauthor hathach <thach@tinyusb.org> 1773834096 +0700\ncommitter hathach <thach@tinyusb.org> 1773834096 +0700\n\nstop blink timer in autoConnLed(false)\n",
+        "verified_at": "2026-03-18T11:41:46Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/ec0a415838e7a8ea8be987abf0a048b13bd628f3",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/ec0a415838e7a8ea8be987abf0a048b13bd628f3",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/ec0a415838e7a8ea8be987abf0a048b13bd628f3/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "a162b65032887a48dd332ccce6351daf78f6f02d",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/a162b65032887a48dd332ccce6351daf78f6f02d",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/a162b65032887a48dd332ccce6351daf78f6f02d"
+      }
+    ]
+  },
+  {
+    "sha": "e0926a4309427a1c882ce3cc7600a83fac277a22",
+    "node_id": "C_kwDOBG6QKdoAKGUwOTI2YTQzMDk0MjdhMWM4ODJjZTNjYzc2MDBhODNmYWMyNzdhMjI",
+    "commit": {
+      "author": {
+        "name": "Andreas",
+        "email": "36504107+AndreasLamparter@users.noreply.github.com",
+        "date": "2025-08-11T20:55:13Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2025-08-11T20:55:13Z"
+      },
+      "message": "Merge branch 'adafruit:master' into master",
+      "tree": {
+        "sha": "b563d36c7dd07401eba465966300a61976c3f76b",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/b563d36c7dd07401eba465966300a61976c3f76b"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/e0926a4309427a1c882ce3cc7600a83fac277a22",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJomlixCRC1aQ7uu5UhlAAABMAQAAYIfVChw8jnx78h83DIYZOj\n8NDIh7n8blSL80bfxi8GVnjdJ7XbqIujU7g5qISTnCG0wyxkKqoabGvDgl73ZmMI\nLVnUsyq3LBX8zykp9yW4yDcVNmVgTHi0Kqmm+I0MlCoymtM7kQfpd7Sruq/QOKXn\nNhiePQVKB4ZsqJ7j8Obf93ue3x9NITBMA3V2BEJ3Ni9yV3N0vHeelx9fJKB+Ne4r\nlvA+ukT53DeJf95hDnTscrwbuHi7DUSBnvrtRy+C5nGpI+rGvZdltj1iJIn2NSFk\nPfqxSAmq0jKVkfyR78Ih2SHvb3Nd4OrEobde/jEl9ajwAdJJn/JdDLGSolOThcnX\nuGssO8Tosk8cfy2++qpT9GdsGIKzadVEkuCzD+0ubkzr+CzV+GseyaIFTI5MUmAk\nMUJr1TmkqEGD7vWU/YKT/HKPelnN3F/twlGNvU6XFW5+PxOWWnhk+dv2sAd4/p5u\na5zaqlGVyKb70G/9bxbB1cfnplx5ja9a7MyJx07YqcIVPQdRAFVOx7c7xaIoqkLO\nLoldyogGBel2hsu20dRyWKJn+Dv5GKnelRKKlXRn2dO5I/Kd95c9HN7DKwmF5n35\nPU6Y43LS72wLBN+YXW3YSqiDClmXAt75xOAsz1IuiDd1385x60brD1Zsz5mCzXoz\noKcqGv+ZHte9MmFIKiiY\n=xQoV\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree b563d36c7dd07401eba465966300a61976c3f76b\nparent e35ebc47383c9aa61c5985da24e160557cd0c2a7\nparent 4a2d8dd5be9686b6580ed2249cae43972922572f\nauthor Andreas <36504107+AndreasLamparter@users.noreply.github.com> 1754945713 +0200\ncommitter GitHub <noreply@github.com> 1754945713 +0200\n\nMerge branch 'adafruit:master' into master\n",
+        "verified_at": "2025-08-11T20:55:34Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/e0926a4309427a1c882ce3cc7600a83fac277a22",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/e0926a4309427a1c882ce3cc7600a83fac277a22",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/e0926a4309427a1c882ce3cc7600a83fac277a22/comments",
+    "author": {
+      "login": "AndreasLamparter",
+      "id": 36504107,
+      "node_id": "MDQ6VXNlcjM2NTA0MTA3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36504107?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AndreasLamparter",
+      "html_url": "https://github.com/AndreasLamparter",
+      "followers_url": "https://api.github.com/users/AndreasLamparter/followers",
+      "following_url": "https://api.github.com/users/AndreasLamparter/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AndreasLamparter/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AndreasLamparter/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AndreasLamparter/subscriptions",
+      "organizations_url": "https://api.github.com/users/AndreasLamparter/orgs",
+      "repos_url": "https://api.github.com/users/AndreasLamparter/repos",
+      "events_url": "https://api.github.com/users/AndreasLamparter/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AndreasLamparter/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e35ebc47383c9aa61c5985da24e160557cd0c2a7",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/e35ebc47383c9aa61c5985da24e160557cd0c2a7",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/e35ebc47383c9aa61c5985da24e160557cd0c2a7"
+      },
+      {
+        "sha": "4a2d8dd5be9686b6580ed2249cae43972922572f",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/4a2d8dd5be9686b6580ed2249cae43972922572f",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/4a2d8dd5be9686b6580ed2249cae43972922572f"
+      }
+    ]
+  },
+  {
+    "sha": "9805a64d6f31a2b4c11f986270fc077298dc5782",
+    "node_id": "C_kwDOBG6QKdoAKDk4MDVhNjRkNmYzMWEyYjRjMTFmOTg2MjcwZmMwNzcyOThkYzU3ODI",
+    "commit": {
+      "author": {
+        "name": "Robert Dale Smith",
+        "email": "robert@robertdalesmith.com",
+        "date": "2025-05-14T18:58:49Z"
+      },
+      "committer": {
+        "name": "Robert Dale Smith",
+        "email": "robert@robertdalesmith.com",
+        "date": "2025-05-14T18:58:49Z"
+      },
+      "message": "feat: implements feature reports logic on Bluefruit52Lib's BLEHidGeneric service",
+      "tree": {
+        "sha": "7836e50e1e67ba709c81641428a66f6c516fcefe",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/7836e50e1e67ba709c81641428a66f6c516fcefe"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/9805a64d6f31a2b4c11f986270fc077298dc5782",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCAAdFiEEOvoSqlWarRQG+8XsCQ9TP3Nq52oFAmgk5+oACgkQCQ9TP3Nq\n52qmVg//cGGPmKvxne3NhcvVULTv0oMPnVUFI5pKrtOHh9nj6hZfv0WYo5jvGkLE\n0aVjquAQ+Fi7JI2HjdMKC23JgPdnyc7DwCRKC+1QJszYM11CJEkDmLC9P0qcq9ay\noSyBk6PfhVnwH93kvlZ2NZYA/HDoVx0SzdwwY7IvT3UoodcfJsM5opiIhXLwAJwz\n0fpVQnnanUSZFfQIjVKQoYidC5tR+hcJhldq80c2oX9jGDHcaT8XNL6VBlwXkcjq\nM8sv0DJS+lForIu/DbYelifJVQa9XHY1ajQgdW/lSqDUrqg1OA+3w1VfxXGk+moE\nP5M7ed9u5Tc3xxs4EJqlm151LvW1x4RwUuf++WW7fLfRaxo0yhzobtsprZnEkDJw\nqY3TpR5x3M8LwIlujJkUMlxSYRbZ5FTZ0lnPS98+RcDgcpxfwu+lgEVghtSn7i3e\nmoKjnFqsAieJurohHApI/qljk/x0aoHM/tToKUkmF1WyN5BnzbJVIU6EqBaL523f\nudE6x1AM5EMdM2fZqz2GG354B2hTb7Sr4UQmF3mX4lSxF+R+aXqYhpj4cX5oJ85c\n+57g+8IE+RFT30vmu6EuWVH3RO21r+Ey3TK1E1y/ba3uCelA4qxla+dVxhalsIN+\na137LiJLrBYb03GoL3GMN1GY44t2xH+bNNZU9UdV+4tNqwo4kYs=\n=bPhf\n-----END PGP SIGNATURE-----",
+        "payload": "tree 7836e50e1e67ba709c81641428a66f6c516fcefe\nparent aa0f46ce6400c18e25f59b11c7c24cd7ef807258\nauthor Robert Dale Smith <robert@robertdalesmith.com> 1747249129 -0500\ncommitter Robert Dale Smith <robert@robertdalesmith.com> 1747249129 -0500\n\nfeat: implements feature reports logic on Bluefruit52Lib's BLEHidGeneric service\n",
+        "verified_at": "2025-05-14T19:03:56Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/9805a64d6f31a2b4c11f986270fc077298dc5782",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/9805a64d6f31a2b4c11f986270fc077298dc5782",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/9805a64d6f31a2b4c11f986270fc077298dc5782/comments",
+    "author": {
+      "login": "RobertDaleSmith",
+      "id": 2039258,
+      "node_id": "MDQ6VXNlcjIwMzkyNTg=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2039258?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/RobertDaleSmith",
+      "html_url": "https://github.com/RobertDaleSmith",
+      "followers_url": "https://api.github.com/users/RobertDaleSmith/followers",
+      "following_url": "https://api.github.com/users/RobertDaleSmith/following{/other_user}",
+      "gists_url": "https://api.github.com/users/RobertDaleSmith/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/RobertDaleSmith/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/RobertDaleSmith/subscriptions",
+      "organizations_url": "https://api.github.com/users/RobertDaleSmith/orgs",
+      "repos_url": "https://api.github.com/users/RobertDaleSmith/repos",
+      "events_url": "https://api.github.com/users/RobertDaleSmith/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/RobertDaleSmith/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "RobertDaleSmith",
+      "id": 2039258,
+      "node_id": "MDQ6VXNlcjIwMzkyNTg=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2039258?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/RobertDaleSmith",
+      "html_url": "https://github.com/RobertDaleSmith",
+      "followers_url": "https://api.github.com/users/RobertDaleSmith/followers",
+      "following_url": "https://api.github.com/users/RobertDaleSmith/following{/other_user}",
+      "gists_url": "https://api.github.com/users/RobertDaleSmith/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/RobertDaleSmith/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/RobertDaleSmith/subscriptions",
+      "organizations_url": "https://api.github.com/users/RobertDaleSmith/orgs",
+      "repos_url": "https://api.github.com/users/RobertDaleSmith/repos",
+      "events_url": "https://api.github.com/users/RobertDaleSmith/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/RobertDaleSmith/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "aa0f46ce6400c18e25f59b11c7c24cd7ef807258",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/aa0f46ce6400c18e25f59b11c7c24cd7ef807258",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/aa0f46ce6400c18e25f59b11c7c24cd7ef807258"
+      }
+    ]
+  },
+  {
+    "sha": "4e22a13f601895502259441ba8c9102122de1a86",
+    "node_id": "C_kwDOBG6QKdoAKDRlMjJhMTNmNjAxODk1NTAyMjU5NDQxYmE4YzkxMDIxMjJkZTFhODY",
+    "commit": {
+      "author": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2025-03-03T09:26:09Z"
+      },
+      "committer": {
+        "name": "hathach",
+        "email": "thach@tinyusb.org",
+        "date": "2025-03-03T09:26:09Z"
+      },
+      "message": "fix dynamic data advertising not update\nfix typo",
+      "tree": {
+        "sha": "4953f26331697d654cc4e8020f4ec88e78abfdb1",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/trees/4953f26331697d654cc4e8020f4ec88e78abfdb1"
+      },
+      "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/git/commits/4e22a13f601895502259441ba8c9102122de1a86",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\niQIzBAABCgAdFiEEPkPBt0shPN3gEOJfJvq4T2FcPFIFAmfFdbEACgkQJvq4T2Fc\nPFJ4bQ//ZORchVP5fRCLFh4MSDFIwZHFI+eVgBYs0K0w1LlW0aQDn55XmZlAXcHU\nHAVWWz9vcHAGCEjK8Wk327fOYaOtU0cHQnipS2xXqaPGVJoY9pqjCI9Sft/mm0JP\nDdZOr/q+2e+B6IXT8Th1unaBEqRfRmggNFIJoqxFkILs0Fj7z0augZuyEAOZEOAJ\njNAzbZPPjPQIC2Gb8T2cBUdOed+hVmWHMUAakuFvkSLw7WJuEt5FLlzzovaG+xur\nU1ajTgwkKyRrpLDlVSvS2Uoh7Y4v0+gXCppqAj5Pq0QQ3hZD6EQmVmogmQFZP5d+\nRBPuYfu4uppekTz0ZWec8pxVZeNUFgdFhsF+eBX5jv24AVLycE1DDo0QRBJ3BBqi\nZXdwQ2Y6wov1hxa+uD+EyaJVJB9JxxdH44fgMltt9FCMJijW6UdkJWUTiK5xZGL7\njDV1uXb4sW4YzSE41emnc0BkWzy0LrIpwG8g97dThC0pYj/EKWVymeyEa+M0K02P\n06qiVU1eevE+3vVLyrNG3G7va6T9CCPXgo457s3nOZwhnf/a/eTQnDpD+wIGW5cu\nNqEEoKodVP888cNCtvvl3vTpBgXxm4HVUssDjpa9W3dAxKyptPL9Hoab/EM9LuK6\nF5v2w2Ff2USnDsREgKzcE1DHZ6GQSAFN6frTb5NCgKO5txMb/b4=\n=atVN\n-----END PGP SIGNATURE-----",
+        "payload": "tree 4953f26331697d654cc4e8020f4ec88e78abfdb1\nparent 53058a74562a20a729f84f48cb6112b56734c6ae\nauthor hathach <thach@tinyusb.org> 1740993969 +0700\ncommitter hathach <thach@tinyusb.org> 1740993969 +0700\n\nfix dynamic data advertising not update\nfix typo\n",
+        "verified_at": "2025-03-03T09:26:39Z"
+      }
+    },
+    "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/4e22a13f601895502259441ba8c9102122de1a86",
+    "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/4e22a13f601895502259441ba8c9102122de1a86",
+    "comments_url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/4e22a13f601895502259441ba8c9102122de1a86/comments",
+    "author": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "hathach",
+      "id": 249515,
+      "node_id": "MDQ6VXNlcjI0OTUxNQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/249515?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hathach",
+      "html_url": "https://github.com/hathach",
+      "followers_url": "https://api.github.com/users/hathach/followers",
+      "following_url": "https://api.github.com/users/hathach/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hathach/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hathach/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hathach/subscriptions",
+      "organizations_url": "https://api.github.com/users/hathach/orgs",
+      "repos_url": "https://api.github.com/users/hathach/repos",
+      "events_url": "https://api.github.com/users/hathach/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hathach/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "53058a74562a20a729f84f48cb6112b56734c6ae",
+        "url": "https://api.github.com/repos/adafruit/Adafruit_nRF52_Arduino/commits/53058a74562a20a729f84f48cb6112b56734c6ae",
+        "html_url": "https://github.com/adafruit/Adafruit_nRF52_Arduino/commit/53058a74562a20a729f84f48cb6112b56734c6ae"
+      }
+    ]
+  }
+]

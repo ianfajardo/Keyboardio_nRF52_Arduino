@@ -157,12 +157,20 @@ bool bond_load_keys(uint8_t role, ble_gap_addr_t* addr, bond_keys_t* bkeys)
       if( file.open(filename, FO_READ) )
       {
         int keylen = file.read();
-        if ( keylen > 0 )
+        // The length byte comes from flash and can be garbage on a corrupt
+        // filesystem (up to 255); bkeys is a fixed-size stack struct, and
+        // the RPA branch below already requires an exact size match. Reading
+        // a corrupt length here was a stack smash → hard fault at reconnect.
+        if ( keylen == sizeof(bond_keys_t) )
         {
           file.read((uint8_t*) bkeys, keylen);
 
           ret = true;
           BOND_LOG("Loaded keys from file %s", filename);
+        }
+        else if ( keylen > 0 )
+        {
+          BOND_LOG("Corrupt bond file %s (keylen=%d), ignoring", filename, keylen);
         }
       }
 

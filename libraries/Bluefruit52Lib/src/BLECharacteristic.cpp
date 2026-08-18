@@ -741,13 +741,18 @@ bool BLECharacteristic::notify(uint16_t conn_hdl, const void* data, uint16_t len
       };
 
       LOG_LV2("CHR", "Notify %d bytes", packet_len);
-      uint32_t status = NRF_ERROR_RESOURCES; 
-      
-      // If we're out of hvn slots, let's keep trying
-      while (NRF_ERROR_RESOURCES == status) {
+      uint32_t status = NRF_ERROR_RESOURCES;
+
+      // If we're out of hvn slots, retry — but bounded. The HVN queue only
+      // drains at connection events; if the link has stalled (host asleep,
+      // radio blackout) an unbounded loop blocks the calling task and burns
+      // power until supervision timeout or forever. ~1s of retries is longer
+      // than any healthy congestion episode.
+      uint8_t retries_left = 66;
+      while (NRF_ERROR_RESOURCES == status && retries_left--) {
         status = sd_ble_gatts_hvx(conn_hdl, &hvx_params);
         if (NRF_ERROR_RESOURCES == status)
-        { 
+        {
           // Delay for just over one connection interval for our current connection
           vTaskDelay(15); // Equivalent to pdMS_TO_TICKS(retry_delay) ~12ms
         }
